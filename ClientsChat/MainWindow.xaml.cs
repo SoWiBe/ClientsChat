@@ -30,7 +30,6 @@ namespace ClientsChat
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this;
         }
 
         private void MenuHomeClick(object sender, RoutedEventArgs e)
