@@ -1,0 +1,742 @@
+﻿<Window x:Class="ClientsChat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientsChat" 
+        xmlns:viewmodel="clr-namespace:ClientsChat.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="650" 
+        Width="1200" 
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip">
+
+    <Window.DataContext>
+        <viewmodel:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid Background="#EFF6FC">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="623*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="683*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.ColumnSpan="2" Grid.Row="0"
+                Background="#6E00FF"
+                MouseDown="Border_MouseDown">
+
+            <Grid HorizontalAlignment="Stretch"
+                  Margin="27 0 10 0">
+                <Label Content="DimasChat"
+                       Foreground="White"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       />
+
+                <StackPanel HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <Button Width="20" Height="20"
+                            x:Name="btnMinimize"
+                            Content="🗕"
+                            Padding="0 0 0 2"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            Click="btnMinimize_Click"/>
+                    <Button Width="20" Height="20"
+                            Content="☐"
+                            x:Name="btnMaximize"
+                            Margin="0 1 0 0"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            Click="btnMaximize_Click"/>
+                    <Button Width="20" Height="20"
+                            Content="🗙"
+                            x:Name="btnClose"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            Click="btnClose_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border 
+                BorderBrush="#6E00FF"
+ 
+                BorderThickness="1"
+                Background="#6E00FF" Grid.Row="1">
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="65*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="80*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Height="80" 
+                            Width="80">
+                    <Image Source="/Icons/photo.png"
+                           Height="80"
+                           Width="80">
+                    </Image>
+                </StackPanel>
+
+                <Border Grid.Row="1"
+                        BorderThickness="0,0,4,0"
+                        MouseDown="MenuHomeClick">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StatusHome}" Value="True">
+                                    <Setter Property="Background" Value="#612DD1"/>
+                                    <Setter Property="BorderBrush" Value="Gold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <StackPanel Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Height="60" 
+                            Width="60">
+                        <Image Source="/Icons/codicon_home.png"
+                           Height="60"
+                           Width="60">
+                        </Image>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Row="2"
+                        BorderThickness="0,0,4,0"
+                        MouseDown="MenuChatClick"
+                        >
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StatusChat}" Value="True">
+                                    <Setter Property="Background" Value="#612DD1"/>
+                                    <Setter Property="BorderBrush" Value="Gold"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding StatusChat}" Value="False">
+                                    <Setter Property="Background" Value="#6E00FF"/>
+                                    <Setter Property="BorderBrush" Value="#6E00FF"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <StackPanel 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" 
+                            Height="45"
+                            Width="45">
+                        <Image Source="/Icons/chat.png"
+                           Height="45"
+                           Width="45">
+                        </Image>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Row="3"
+                        BorderThickness="0,0,4,0"
+                        MouseDown="MenuBellClick"
+                        >
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StatusBell}" Value="True">
+                                    <Setter Property="Background" Value="#612DD1"/>
+                                    <Setter Property="BorderBrush" Value="Gold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <StackPanel Grid.Row="3"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" 
+                            Height="60" 
+                            Width="60">
+                        <Image Source="/Icons/bell.png"
+                           Height="60"
+                           Width="60">
+                        </Image>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Row="4"
+                        BorderThickness="0,0,4,0"
+                        MouseDown="MenuSettingsClick"
+                        >
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StatusSettings}" Value="True">
+                                    <Setter Property="Background" Value="#612DD1"/>
+                                    <Setter Property="BorderBrush" Value="Gold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <StackPanel Grid.Row="4" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Height="60" 
+                            Width="60">
+                        <Image Source="/Icons/ci_settings.png"
+                           Height="60"
+                           Width="60">
+                        </Image>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Grid.Row="5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            Margin="0 0 0 30"
+                            Height="60" 
+                            Width="60">
+                    <Image Source="/Icons/exit.png"
+                           Height="60"
+                           Width="60">
+                    </Image>
+                </StackPanel>
+            </Grid>
+        </Border >
+        <Grid Grid.Column="1"
+              Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="274*"/>
+                <ColumnDefinition Width="445*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="58*"/>
+                    <RowDefinition Height="150*"/>
+                    <RowDefinition Height="243*"/>
+                </Grid.RowDefinitions>
+                <StackPanel 
+                            Height="50px"
+                            Margin="15">
+                    <Border 
+                        Grid.Row="0"
+                        Height="50px"
+                        
+                        CornerRadius="20"
+                        BorderBrush="LightGray"
+                        BorderThickness="3"
+                        Background="White"
+                        >
+                        <StackPanel Margin="10"
+                                    Orientation="Horizontal"
+                                    >
+                            <Image Source="/Icons/bx_search.png"
+                                   Height="25"
+                                   Width="25"></Image>
+                            <Grid>
+                                <TextBox
+                                    x:Name="txtSearch"
+                                    BorderThickness="0"
+                                    VerticalAlignment="Center"
+                                    TextAlignment="Left"
+                                    Margin="5px 5px 0 2px"
+                                    Height="25"
+                                    FontSize="20px"
+                                    FontFamily="Roboto"
+                                    >
+                                </TextBox>
+                                <TextBlock IsHitTestVisible="False"
+                                           Text="Search"
+                                           TextAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           FontSize="20px"
+                                           Foreground="#7C7C7C"
+                                           Margin="5 2 0 2"
+                                           Height="25"
+                                           >
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=txtSearch}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <!--<StackPanel Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <Border 
+                        Grid.Row="0"
+                        Height="300px"
+                        Width="539px"
+                        CornerRadius="20"
+                        BorderBrush="LightGray"
+                        BorderThickness="3"
+                        Background="White">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" 
+                                       FontFamily="Roboto"
+                                       Foreground="#303030"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="20 0">Groups
+                            </TextBlock>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <Image Source="/Icons/group1.png"
+                                          Margin="10"
+                                          x:Name="imgGroupIcon"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Vertical">
+                                    <TextBlock
+                                        x:Name="txtGroupName"
+                                        FontSize="23px"
+                                        FontWeight="SemiBold"
+                                        Margin="10 10 10 0">
+                                        Friends Forever
+                                    </TextBlock>
+                                    <TextBlock
+                                        x:Name="txtGroupSubTitle"
+                                        FontSize="23px"
+                                        FontWeight="Light"
+                                        Margin="10 0 10 0">
+                                       Hahahahhah
+                                    </TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Margin="0 0 10 0">
+                                    <TextBlock x:Name="txtGroupTimeMessage"
+                                               FontSize="20px"
+                                               FontWeight="ExtraLight">
+                                        Today 9:52 pm
+                                    </TextBlock>
+                                    <Image Source="/Icons/count_message.png" 
+                                           Height="30"
+                                           HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <Image Source="/Icons/group2.png"
+                                          Margin="10"
+                                          x:Name="imgGroupIcon1"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Vertical">
+                                    <TextBlock
+                                        x:Name="txtGroupName1"
+                                        FontSize="23px"
+                                        FontWeight="SemiBold"
+                                        Margin="10 10 10 0">
+                                        Mera Gang
+                                    </TextBlock>
+                                    <TextBlock
+                                        x:Name="txtGroupSubTitle1"
+                                        FontSize="23px"
+                                        FontWeight="Light"
+                                        Margin="10 0 10 0">
+                                       Kyuuuuu???
+                                    </TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Margin="0 0 10 0">
+                                    <TextBlock x:Name="txtGroupTimeMessage1"
+                                               FontSize="20px"
+                                               FontWeight="ExtraLight">
+                                        Yesterday 12:31 pm
+                                    </TextBlock>
+                                    <Image Source="/Icons/count_message.png" 
+                                           Height="30"
+                                           HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <Image Source="/Icons/group3.png"
+                                          Margin="10"
+                                          x:Name="imgGroupIcon2"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Vertical">
+                                    <TextBlock
+                                        x:Name="txtGroupName2"
+                                        FontSize="23px"
+                                        FontWeight="SemiBold"
+                                        Margin="10 10 10 0">
+                                       Hiking
+                                    </TextBlock>
+                                    <TextBlock
+                                        x:Name="txtGroupSubTitle2"
+                                        FontSize="23px"
+                                        FontWeight="Light"
+                                        Margin="10 0 10 0">
+                                       It’s not going to happen
+                                    </TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Margin="0 0 10 0">
+                                    <TextBlock x:Name="txtGroupTimeMessage2"
+                                               FontSize="20px"
+                                               FontWeight="ExtraLight">
+                                        Wednesday, 9.12am
+                                    </TextBlock>
+                                    <Image Source="/Icons/count_message.png" 
+                                           Height="30"
+                                           HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </StackPanel>-->
+                <!--<StackPanel Grid.Row="2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Height="500px"
+                            Width="539px">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" 
+                                       FontFamily="Roboto"
+                                       Foreground="#303030"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="20 0 0 20">People
+                        </TextBlock>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <Image Source="/Icons/group1.png"
+                                          Margin="10"
+                                          x:Name="imgPersonIcon"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Vertical">
+                                <TextBlock
+                                        x:Name="txtPersonName"
+                                        FontSize="23px"
+                                        FontWeight="SemiBold"
+                                        Margin="10 10 10 0">
+                                        Friends Forever
+                                </TextBlock>
+                                <TextBlock
+                                        x:Name="txtPersonSubTitle"
+                                        FontSize="23px"
+                                        FontWeight="Light"
+                                        Margin="10 0 10 0">
+                                       Hahahahhah
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Margin="0 0 10 0">
+                                <TextBlock x:Name="txtPersonTimeMessage"
+                                               FontSize="20px"
+                                               FontWeight="ExtraLight">
+                                        Today 9:52 pm
+                                </TextBlock>
+                                <Image Source="/Icons/count_message.png" 
+                                           Height="30"
+                                           HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <Image Source="/Icons/group2.png"
+                                          Margin="10"
+                                          x:Name="imgPersonIcon1"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Vertical">
+                                <TextBlock
+                                        x:Name="txtPersonName1"
+                                        FontSize="23px"
+                                        FontWeight="SemiBold"
+                                        Margin="10 10 10 0">
+                                        Mera Gang
+                                </TextBlock>
+                                <TextBlock
+                                        x:Name="txtPersonSubTitle1"
+                                        FontSize="23px"
+                                        FontWeight="Light"
+                                        Margin="10 0 10 0">
+                                       Kyuuuuu???
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Margin="0 0 10 0">
+                                <TextBlock x:Name="txtPersonTimeMessage1"
+                                               FontSize="20px"
+                                               FontWeight="ExtraLight">
+                                        Yesterday 12:31 pm
+                                </TextBlock>
+                                <Image Source="/Icons/count_message.png" 
+                                           Height="30"
+                                           HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <Image Source="/Icons/group3.png"
+                                          Margin="10"
+                                          x:Name="imgPersonIcon2"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Vertical">
+                                <TextBlock
+                                        x:Name="txtPersonName2"
+                                        FontSize="23px"
+                                        FontWeight="SemiBold"
+                                        Margin="10 10 10 0">
+                                       Hiking
+                                </TextBlock>
+                                <TextBlock
+                                        x:Name="txtPersonSubTitle2"
+                                        FontSize="23px"
+                                        FontWeight="Light"
+                                        Margin="10 0 10 0">
+                                       It’s not going to happen
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Margin="0 0 10 0">
+                                <TextBlock x:Name="txtPersonTimeMessage2"
+                                               FontSize="20px"
+                                               FontWeight="ExtraLight">
+                                        Wednesday, 9.12am
+                                </TextBlock>
+                                <Image Source="/Icons/count_message.png" 
+                                           Height="30"
+                                           HorizontalAlignment="Right"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </StackPanel>-->
+            </Grid>
+            <Grid Grid.Column="1">
+                <Border 
+                        Grid.Row="0"
+                        CornerRadius="20"
+                        BorderBrush="LightGray"
+                        BorderThickness="3"
+                        Background="White" Margin="30,28,10,25"/>
+            </Grid>
+        </Grid>
+        <Border 
+            BorderBrush="#6E00FF"
+            BorderThickness="1"
+            Background="#6E00FF" Grid.Row="1">
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="65*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="80*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Height="60" 
+                    Width="60">
+                    <Image Source="Icons/photo.png"
+                        Height="60"
+                        Width="60"/>
+                </StackPanel>
+
+                <Border Grid.Row="1"
+                    BorderThickness="0,0,4,0"
+                    MouseDown="MenuHomeClick">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StatusHome}" Value="True">
+                                    <Setter Property="Background" Value="#612DD1"/>
+                                    <Setter Property="BorderBrush" Value="Gold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <StackPanel Grid.Row="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="60" 
+                        Width="60">
+                        <Image Source="Icons/codicon_home.png"
+                            Height="50"
+                            Width="50"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Row="2"
+                    BorderThickness="0,0,4,0"
+                    MouseDown="MenuChatClick"
+                        >
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StatusChat}" Value="True">
+                                    <Setter Property="Background" Value="#612DD1"/>
+                                    <Setter Property="BorderBrush" Value="Gold"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding StatusChat}" Value="False">
+                                    <Setter Property="Background" Value="#6E00FF"/>
+                                    <Setter Property="BorderBrush" Value="#6E00FF"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <StackPanel 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" 
+                        Height="40"
+                        Width="40">
+                        <Image Source="Icons/chat.png"
+                            Height="40"
+                            Width="40"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Row="3"
+                    BorderThickness="0,0,4,0"
+                    MouseDown="MenuBellClick"
+                        >
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StatusBell}" Value="True">
+                                    <Setter Property="Background" Value="#612DD1"/>
+                                    <Setter Property="BorderBrush" Value="Gold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <StackPanel Grid.Row="3"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" 
+                        Height="60" 
+                        Width="60">
+                        <Image Source="Icons/bell.png"
+                            Height="50"
+                            Width="50"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Row="4"
+                    BorderThickness="0,0,4,0"
+                    MouseDown="MenuSettingsClick"
+                        >
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StatusSettings}" Value="True">
+                                    <Setter Property="Background" Value="#612DD1"/>
+                                    <Setter Property="BorderBrush" Value="Gold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <StackPanel Grid.Row="4" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="60" 
+                        Width="60">
+                        <Image Source="Icons/ci_settings.png"
+                            Height="50"
+                            Width="50"/>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Grid.Row="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Margin="0 0 0 30"
+                    Height="50" 
+                    Width="50">
+                    <Image Source="Icons/exit.png"
+                        Height="50"
+                        Width="50"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

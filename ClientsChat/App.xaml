@@ -1,0 +1,16 @@
+﻿<Application x:Class="ClientsChat.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ClientsChat"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="#7C7C7C"/>
+            <Setter Property="FontSize" Value="30px"/>
+            <Setter Property="FontFamily" Value="Roboto"></Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Roboto"></Setter>
+        </Style>
+    </Application.Resources>
+</Application>
