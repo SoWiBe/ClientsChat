@@ -1,4 +1,6 @@
-﻿using ClientsChat.MVVM.Model;
+﻿using ClientsChat.Core;
+using ClientsChat.MVVM.Model;
+using ClientsChat.Net;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,21 +10,68 @@ using System.Threading.Tasks;
 
 namespace ClientsChat.MVVM.ViewModel
 {
-    class MainViewModel
+    class MainViewModel : ObservableObject
     {
         public ObservableCollection<MessageModel> Messages { get; set; }
         public ObservableCollection<ContactModel> Contacts { get; set; }
 
+        public string Username { get; set; }
+
+        /* Commands */
+        public RelayCommand SendCommand { get; set; }
+        public RelayCommand ConnectToServerCommand { get; set; }
+
+        private Server _server;
+
+       
+        private ContactModel _selectedContact;
+
+        public ContactModel SelectedContact
+        {
+            get { return _selectedContact; }
+            set
+            {
+                _selectedContact = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _message;
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public MainViewModel()
         {
+            _server = new Server();
+            ConnectToServerCommand = new RelayCommand(o => _server.ConnectToServer(Username), o => !string.IsNullOrEmpty(Username));
+
             Messages = new ObservableCollection<MessageModel>();
             Contacts = new ObservableCollection<ContactModel>();
+
+            SendCommand = new RelayCommand(o =>
+            {
+                Messages.Add(new MessageModel
+                {
+                    Message = Message,
+                    FirstMessage = false
+                });
+
+                Message = "";
+            });
 
             Messages.Add(new MessageModel
             {
                 Username = "Aleksey",
                 UsernameColor = "Black",
-                ImageSource = "",
+                ImageSource = "E:/C#/ClientsChat/ClientsChat/Icons/photo.png",
                 Message = "Test message for Aleksey",
                 IsNativeOrigin = false,
                 FirstMessage = true
@@ -34,7 +83,7 @@ namespace ClientsChat.MVVM.ViewModel
                 {
                     Username = "Artem",
                     UsernameColor = "Orange",
-                    ImageSource = "",
+                    ImageSource = "E:/C#/ClientsChat/ClientsChat/Icons/photo.png",
                     Message = "Test message for Artem",
                     IsNativeOrigin = false,
                     FirstMessage = false
@@ -47,7 +96,7 @@ namespace ClientsChat.MVVM.ViewModel
                 {
                     Username = "Stas",
                     UsernameColor = "Blue",
-                    ImageSource = "",
+                    ImageSource = "E:/C#/ClientsChat/ClientsChat/Icons/photo.png",
                     Message = "Test message for Stas",
                     IsNativeOrigin = true,
                     FirstMessage = false
@@ -60,7 +109,7 @@ namespace ClientsChat.MVVM.ViewModel
                 {
                     Username = "Sergek",
                     UsernameColor = "Green",
-                    ImageSource = "",
+                    ImageSource = "E:/C#/ClientsChat/ClientsChat/Icons/photo.png",
                     Message = "Test message for Sergek",
                     IsNativeOrigin = true,
                     FirstMessage = false
@@ -71,7 +120,7 @@ namespace ClientsChat.MVVM.ViewModel
             {
                 Username = "Slava",
                 UsernameColor = "Red",
-                ImageSource = "",
+                ImageSource = "E:/C#/ClientsChat/ClientsChat/Icons/photo.png",
                 Message = "Test message for Slava",
                 IsNativeOrigin = false,
                 FirstMessage = true
@@ -82,7 +131,7 @@ namespace ClientsChat.MVVM.ViewModel
                 Contacts.Add(new ContactModel
                 {
                     Username = $"Slava {i}",
-                    ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/photo.png",
+                    ImageSourse = "/Icons/photo.png",
                     Messages = Messages
                 });
             }
