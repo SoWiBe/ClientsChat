@@ -13,6 +13,7 @@ namespace ClientsChat.MVVM.ViewModel
     class MainViewModel : ObservableObject
     {
         public ObservableCollection<MessageModel> Messages { get; set; }
+        public ObservableCollection<UserModel> Users { get; set; }
         public ObservableCollection<ContactModel> Contacts { get; set; }
 
         public string Username { get; set; }
@@ -23,9 +24,7 @@ namespace ClientsChat.MVVM.ViewModel
 
         private Server _server;
 
-       
         private ContactModel _selectedContact;
-
         public ContactModel SelectedContact
         {
             get { return _selectedContact; }
@@ -50,11 +49,14 @@ namespace ClientsChat.MVVM.ViewModel
 
         public MainViewModel()
         {
+            Users = new ObservableCollection<UserModel>();
             _server = new Server();
+            _server.connectedEvent += UserConnected;
             ConnectToServerCommand = new RelayCommand(o => _server.ConnectToServer(Username), o => !string.IsNullOrEmpty(Username));
 
             Messages = new ObservableCollection<MessageModel>();
             Contacts = new ObservableCollection<ContactModel>();
+            
 
             SendCommand = new RelayCommand(o =>
             {
@@ -135,6 +137,17 @@ namespace ClientsChat.MVVM.ViewModel
                     Messages = Messages
                 });
             }
+        }
+
+        private void UserConnected()
+        {
+            var user = new UserModel
+            {
+                Username = _server.PacketReader.ReadMessage(),
+                ID = _server.PacketReader.ReadMessage()
+            };
+
+            if(!user)
         }
     }
 }

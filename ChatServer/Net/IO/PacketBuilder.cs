@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientsChat.Net.IO
+namespace ChatServer.Net.IO
 {
     class PacketBuilder
     {
@@ -21,7 +20,7 @@ namespace ClientsChat.Net.IO
             _ms.WriteByte(opcode);
         }
 
-        public void WriteString(string msg)
+        public void WriteMessage(string msg)
         {
             var masLength = msg.Length;
 
