@@ -4,14 +4,29 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel>
-                            <Label Content="{Binding Message}"
-                                   Foreground="Black"
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Fill="#E7E7E7" Height="10" Width="10" Margin="5"
+                                 VerticalAlignment="Bottom"/>
+                            <Border Background="#E7E7E7"
+                                CornerRadius="10"
+                                Padding="5"
+                                VerticalAlignment="Bottom"
+                                Margin="0 10 10 10">
+                                <Label Content="{Binding Message}"
+                                   Foreground="#303030"
                                    FontWeight="SemiBold"
-                                   VerticalAlignment="Center"/>
+                                   VerticalAlignment="Center"
+                                  />
+                            </Border>
                         </StackPanel>
+                        <Label Content="{Binding Time}"
+                               Foreground="#707070"
+                               FontWeight="Light"
+                               VerticalAlignment="Center"
+                               />
                     </StackPanel>
+                    
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

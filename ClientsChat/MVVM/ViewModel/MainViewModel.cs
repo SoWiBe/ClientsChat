@@ -15,7 +15,7 @@ namespace ClientsChat.MVVM.ViewModel
     {
         
         public ObservableCollection<UserModel> Users { get; set; }
-        public ObservableCollection<string> Messages { get; set; }
+        public ObservableCollection<MessageModel> Messages { get; set; }
         public ObservableCollection<ContactModel> Contacts { get; set; }
         public string Username { get; set; }
 
@@ -38,8 +38,7 @@ namespace ClientsChat.MVVM.ViewModel
         }
 
         public string Message { get; set; }
-
-
+        
         public MainViewModel()
         {
             Users = new ObservableCollection<UserModel>();
@@ -49,8 +48,59 @@ namespace ClientsChat.MVVM.ViewModel
             _server.userDisconnectEvent += RemoveUser;
             ConnectToServerCommand = new RelayCommand(o => _server.ConnectToServer(Username), o => !string.IsNullOrEmpty(Username));
             SendMessageCommand = new RelayCommand(o => _server.SendMessageToServer(Message), o => !string.IsNullOrEmpty(Message));
-            Messages = new ObservableCollection<string>();
+            Messages = new ObservableCollection<MessageModel>();
             Contacts = new ObservableCollection<ContactModel>();
+
+            Contacts.Add(new ContactModel
+            {
+                Username = "Aleksey",
+                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group2.png"
+            });
+            Contacts.Add(new ContactModel
+            {
+                Username = "Stas",
+                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group3.png"
+            });
+            Contacts.Add(new ContactModel
+            {
+                Username = "Slava",
+                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group1.png"
+            });
+            Contacts.Add(new ContactModel
+            {
+                Username = "Maria",
+                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/photo.png"
+            });
+            Contacts.Add(new ContactModel
+            {
+                Username = "Mixa",
+                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group2.png"
+            });
+            Contacts.Add(new ContactModel
+            {
+                Username = "Aleksey",
+                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group2.png"
+            });
+            Contacts.Add(new ContactModel
+            {
+                Username = "Stas",
+                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group3.png"
+            });
+            Contacts.Add(new ContactModel
+            {
+                Username = "Slava",
+                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group1.png"
+            });
+            Contacts.Add(new ContactModel
+            {
+                Username = "Maria",
+                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/photo.png"
+            });
+            Contacts.Add(new ContactModel
+            {
+                Username = "Mixa",
+                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group2.png"
+            });
         }
 
         private void RemoveUser()
@@ -63,7 +113,12 @@ namespace ClientsChat.MVVM.ViewModel
         private void MessageReceived()
         {
             var msg = _server.PacketReader.ReadMessage();
-            Application.Current.Dispatcher.Invoke(() => Messages.Add(msg));
+            Application.Current.Dispatcher.Invoke(() => Messages.Add(new MessageModel
+            {
+                Message = msg,
+                Time = DateTime.Now.ToString("dddd, dd MMMM yyyy h:mm tt"),
+                IsNativeOrigin = true
+            }));
         }
 
         private void UserConnected()

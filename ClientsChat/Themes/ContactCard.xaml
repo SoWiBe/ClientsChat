@@ -12,27 +12,28 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
-                    <Border Background="{TemplateBinding Background}"
+                    <Border Background="Transparent"
                             Height="50"
-                            CornerRadius="4"
-                            Margin="8 2 8 2">
+                            CornerRadius="4">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="49"/>
+                                <RowDefinition Height="1"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
 
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="5 0 0 0">
+                                <Ellipse Width="30" Height="30">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding ImageSourse}" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
 
-                            <Ellipse Width="30" Height="30">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding ImageSourse}" />
-                                </Ellipse.Fill>
-                            </Ellipse>
-
-                            <StackPanel>
-                                <Label Content="{Binding Username}" Foreground="Black"/>
-                                <Label Content="{Binding LastMessage}" 
-                                       Foreground="Gray" 
-                                       FontSize="10"/>
+                                <StackPanel VerticalAlignment="Center">
+                                    <Label Content="{Binding Username}" Foreground="Black"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
+                            <StackPanel Grid.Row="1" Background="#B4ABAB"></StackPanel>
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
