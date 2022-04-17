@@ -25,9 +25,9 @@
                                      Foreground="Gray"
                                      CaretBrush="Gray"
                                      Margin="40 0 0 0"
-                                     Text="{Binding Message, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                     Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBox.InputBindings>
-                                    <KeyBinding Command="{Binding SendCommand}" Key="Return"/>
+                                    <KeyBinding Command="{Binding SendMessageCommand}" Key="Return"/>
                                 </TextBox.InputBindings>
                             </TextBox>
 
@@ -56,8 +56,8 @@
                             <Image Source="/Icons/attach.png" 
                                    Width="30" Height="30"
                                    HorizontalAlignment="Left"
-                                    RenderOptions.BitmapScalingMode="Fant"
-                                    Margin="10"/>
+                                   RenderOptions.BitmapScalingMode="Fant"
+                                   Margin="5 10 10 10"/>
                         </Grid>
                     </Border>
                 </ControlTemplate>

@@ -5,26 +5,7 @@
             <Setter.Value>
                 <ControlTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Ellipse Width="30" Height="30"
-                                 Margin="10">
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding ImageSource}" RenderOptions.BitmapScalingMode="Fant"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-
                         <StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding Username}"
-                                   Foreground="{Binding UsernameColor}"
-                                   FontWeight="SemiBold"
-                                   VerticalAlignment="Center"
-                                   Margin="5 0 0 0"/>
-                                <Label Content="{Binding Time}"
-                                   Foreground="Gray"
-                                   FontWeight="SemiBold"
-                                   FontSize="8"
-                                   VerticalAlignment="Center"/>
-                            </StackPanel>
                             <Label Content="{Binding Message}"
                                    Foreground="Black"
                                    FontWeight="SemiBold"
@@ -34,21 +15,5 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
-        <Style.Resources>
-            <ControlTemplate x:Key="CustomRow">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="{Binding Message}"
-                           Foreground="Black"
-                           Margin="40 -2 0 -2"/>
-                </StackPanel>
-            </ControlTemplate>
-        </Style.Resources>
-
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding FirstMessage}" Value="False">
-                <Setter Property="Template" Value="{StaticResource CustomRow}"/>
-            </DataTrigger>
-        </Style.Triggers>
     </Style>
 </ResourceDictionary>

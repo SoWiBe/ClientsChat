@@ -697,31 +697,30 @@
                                 </StackPanel>
                             </Grid>
                         </Border>
-                        <ListView ItemsSource="{Binding SelectedContact.Messages}"
+                        <ListView ItemsSource="{Binding Messages}"
                             Grid.Row="1"
                             Background="Transparent"
-                            ItemContainerStyle="{StaticResource ChatItem}"
                             Margin="5"
                             BorderThickness="0"/>
 
                         <Grid Grid.Row="2"  Grid.RowSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="60"/>
                             </Grid.ColumnDefinitions>
 
 
-
-                            <TextBox Grid.Row="1"
+        
+                            <TextBox Grid.Column="0"
                                 Height="50"
                                 Text="Type your message here..."
                                 Style="{StaticResource MessageBox}"
-                                Grid.ColumnSpan="2"/>
+                                />
 
 
                             <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right"
-                                Grid.Column="1"
+                                Grid.Column="0"
                                 >
                                 <Image Source="Icons/smile.png" 
                                     Width="30" Height="30"
@@ -734,6 +733,13 @@
                                     Margin="0 0 20 0"
                                     />
                             </StackPanel>
+
+                            <Button x:Name="btnSend"
+                                    Grid.Column="1"
+                                    Margin="5"
+                                    Width="50"
+                                    Style="{StaticResource SendButton}"
+                                    Command="{Binding SendMessageCommand}"/>
                         </Grid>
                     </Grid>
 
