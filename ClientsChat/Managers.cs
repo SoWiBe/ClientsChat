@@ -25,8 +25,10 @@ namespace ClientsChat
         public string Image { get; set; }
         public string Direction { get; set; }
         public string Status { get; set; }
+        public Nullable<int> IdUser { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Question> Question { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

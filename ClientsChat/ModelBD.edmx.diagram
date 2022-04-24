@@ -6,11 +6,14 @@
     <edmx:Diagrams>
       <Diagram DiagramId="7a5de762428f460685230be2b1a9ebb4" Name="Diagram1">
         <EntityTypeShape EntityType="ClientChatModel.Clients" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClientChatModel.Managers" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClientChatModel.Question" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClientChatModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClientChatModel.Managers" Width="1.5" PointX="3.125" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClientChatModel.Question" Width="1.5" PointX="3.125" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClientChatModel.sysdiagrams" Width="1.5" PointX="5.5" PointY="4.5" IsExpanded="true" />
         <AssociationConnector Association="ClientChatModel.FK_Question_Clients" ManuallyRouted="false" />
         <AssociationConnector Association="ClientChatModel.FK_Question_Managers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ClientChatModel.Users" Width="1.5" PointX="0.5" PointY="4.5" />
+        <AssociationConnector Association="ClientChatModel.FK_Clients_Users" />
+        <AssociationConnector Association="ClientChatModel.FK_Managers_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

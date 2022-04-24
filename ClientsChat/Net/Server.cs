@@ -17,7 +17,6 @@ namespace ClientsChat.Net
         public event Action msgReceivedEvent;
         public event Action userDisconnectEvent;
 
-
         public Server()
         {
             _client = new TcpClient();

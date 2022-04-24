@@ -60,5 +60,31 @@
                 </StackPanel>
             </Grid>
         </Border>
+        <Grid Grid.Row="1">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Label Content="Sign In"
+                       FontSize="30"
+                       HorizontalAlignment="Center"
+                       FontFamily="Roboto"
+                       FontWeight="SemiBold"
+                       />
+                <TextBox
+                    x:Name="txtLogin"
+                    Width="300"
+                    Height="50"
+                    Style="{StaticResource CustomTextBox}"/>
+                <TextBox
+                    x:Name="txtPassword"
+                    Width="300"
+                    Height="50"
+                    Style="{StaticResource CustomTextBoxPassword}"/>
+                
+                <Button
+                    x:Name="btnConnect"
+                    Style="{StaticResource EnterButton}"
+                    Click="btnConnect_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

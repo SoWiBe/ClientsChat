@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientsChat.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -27,11 +28,29 @@ namespace ClientsChat
         public bool StatusSettings { get; set; }
 
         private bool[] _isMenuItemsClicks = new bool[] { false, false, false, false};
-        public MainWindow()
+        private Users _user;
+        public MainWindow(Users user)
         {
             InitializeComponent();
+            _user = user;
+            MainFrame.Navigate(new ChatPage());
+            SetUsername(_user);
         }
 
+        private void SetUsername(Users user)
+        {
+            try
+            {
+                Managers manager = ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == user.Id).First();
+                MainViewModel mainViewModel = new MainViewModel();
+                mainViewModel.Username = manager.FIO;
+                txtName.Text = manager.FIO;
+            } 
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void MenuHomeClick(object sender, RoutedEventArgs e)
         {
             ResetClicks(0);

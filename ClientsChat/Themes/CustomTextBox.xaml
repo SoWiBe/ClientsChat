@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style TargetType="TextBox" x:Key="MessageBox">
+    <Style TargetType="TextBox" x:Key="CustomTextBox">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Margin" Value="8"/>
@@ -9,27 +9,25 @@
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
                     <Border CornerRadius="25"
-                            Background="#EFF6FC">
+                            BorderThickness="1"
+                            BorderBrush="#6E00FF"
+                            Background="Transparent">
                         <Grid>
-                            
                             <TextBox VerticalAlignment="Stretch"
                                      VerticalContentAlignment="Center"
                                      HorizontalAlignment="Stretch"
-                                     x:Name="MessageBox"
+                                     x:Name="CustomTextBox"
                                      TextWrapping="Wrap"
                                      Background="Transparent"
                                      BorderThickness="0"
+                                     FontSize="20"
+                                     Text="{Binding Path=Login}"
                                      Foreground="Gray"
                                      CaretBrush="Gray"
-                                     Margin="40 0 0 0"
-                                     Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}">
-                                <TextBox.InputBindings>
-                                    <KeyBinding Command="{Binding SendMessageCommand}" Key="Return"/>
-                                </TextBox.InputBindings>
-                            </TextBox>
-
+                                     Margin="40 0 0 0"/>
                             <TextBlock IsHitTestVisible="False"
-                                       Text="Type your message here..."
+                                       Text="Login"
+                                       FontSize="20"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        Margin="40 0 0 0"
@@ -39,24 +37,19 @@
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Visibility" Value="Collapsed"/>
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=MessageBox}" Value="">
+                                            <DataTrigger Binding="{Binding Text, ElementName=CustomTextBox}" Value="">
                                                 <Setter Property="Visibility" Value="Visible"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </TextBlock.Style>
-                                
-                            </TextBlock>
 
-                            <Image Source="/Icons/attach.png" 
-                                   Width="30" Height="30"
-                                   HorizontalAlignment="Left"
-                                   RenderOptions.BitmapScalingMode="Fant"
-                                   Margin="5 10 10 10"/>
+                            </TextBlock>
                         </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>

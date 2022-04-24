@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ClientChatModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище ClientChatModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="Id" />
@@ -12,6 +12,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FIO" Type="nvarchar" MaxLength="50" />
           <Property Name="Image" Type="nchar" MaxLength="10" />
+          <Property Name="IdUser" Type="int" />
         </EntityType>
         <EntityType Name="Managers">
           <Key>
@@ -22,6 +23,7 @@
           <Property Name="Image" Type="nvarchar" MaxLength="50" />
           <Property Name="Direction" Type="nvarchar" MaxLength="50" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdUser" Type="int" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -43,6 +45,38 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Clients_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Managers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Managers" Type="Self.Managers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Managers">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Question_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
           <End Role="Question" Type="Self.Question" Multiplicity="*" />
@@ -103,6 +137,15 @@
           <EntitySet Name="Managers" EntityType="Self.Managers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Clients_Users" Association="Self.FK_Clients_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Managers_Users" Association="Self.FK_Managers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Managers" EntitySet="Managers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Question_Clients" Association="Self.FK_Question_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Question" EntitySet="Question" />
@@ -112,8 +155,7 @@
             <End Role="Question" EntitySet="Question" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClientChatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -125,6 +167,8 @@
           <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Question" Relationship="Self.FK_Question_Clients" FromRole="Clients" ToRole="Question" />
+          <Property Name="IdUser" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="ClientChatModel.FK_Clients_Users" FromRole="Clients" ToRole="Users" />
         </EntityType>
         <EntityType Name="Managers">
           <Key>
@@ -136,6 +180,8 @@
           <Property Name="Direction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Question" Relationship="Self.FK_Question_Managers" FromRole="Managers" ToRole="Question" />
+          <Property Name="IdUser" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="ClientChatModel.FK_Managers_Users" FromRole="Managers" ToRole="Users" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -226,6 +272,15 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Users" EntityType="ClientChatModel.Users" />
+          <AssociationSet Name="FK_Clients_Users" Association="ClientChatModel.FK_Clients_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Managers_Users" Association="ClientChatModel.FK_Managers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Managers" EntitySet="Managers" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -238,6 +293,40 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Clients" Relationship="ClientChatModel.FK_Clients_Users" FromRole="Users" ToRole="Clients" />
+          <NavigationProperty Name="Managers" Relationship="ClientChatModel.FK_Managers_Users" FromRole="Users" ToRole="Managers" />
+        </EntityType>
+        <Association Name="FK_Clients_Users">
+          <End Type="ClientChatModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="ClientChatModel.Clients" Role="Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Clients">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Managers_Users">
+          <End Type="ClientChatModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="ClientChatModel.Managers" Role="Managers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Managers">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -247,6 +336,7 @@
           <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="ClientChatModel.Clients">
               <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FIO" ColumnName="FIO" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -256,6 +346,7 @@
           <EntitySetMapping Name="Managers">
             <EntityTypeMapping TypeName="ClientChatModel.Managers">
               <MappingFragment StoreEntitySet="Managers">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FIO" ColumnName="FIO" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -310,6 +401,15 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище ClientChatModel.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище ClientChatModel.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ClientChatModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -12,21 +12,22 @@ namespace ClientsChat
     using System;
     using System.Collections.Generic;
     
-    public partial class Clients
+    public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Clients()
+        public Users()
         {
-            this.Question = new HashSet<Question>();
+            this.Clients = new HashSet<Clients>();
+            this.Managers = new HashSet<Managers>();
         }
     
         public int Id { get; set; }
-        public string FIO { get; set; }
-        public string Image { get; set; }
-        public Nullable<int> IdUser { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Question> Question { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual ICollection<Clients> Clients { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Managers> Managers { get; set; }
     }
 }

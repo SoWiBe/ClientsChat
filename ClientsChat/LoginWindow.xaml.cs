@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClientsChat.SpecialUse;
 
 namespace ClientsChat
 {
@@ -19,11 +21,13 @@ namespace ClientsChat
     /// </summary>
     public partial class LoginWindow : Window
     {
+        public string Login { get; set; }
+        public string Password { get; set; }
         public LoginWindow()
         {
             InitializeComponent();
+            DataContext = this;
         }
-
 
         //Move window by left button on the mouse
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -48,6 +52,15 @@ namespace ClientsChat
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void btnConnect_Click(object sender, RoutedEventArgs e)
+        {
+            ClientManager.Login = Login;
+            ClientManager.Password = Password;
+            Users user = ClientChatEntities.GetContext().Users.Where(x => x.Login == Login && x.Password == Password).ToList().First();
+            new MainWindow(user).Show();
+            this.Close();
         }
     }
 }

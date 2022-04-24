@@ -1,6 +1,7 @@
 ﻿using ClientsChat.Core;
 using ClientsChat.MVVM.Model;
 using ClientsChat.Net;
+using ClientsChat.SpecialUse;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -46,8 +47,10 @@ namespace ClientsChat.MVVM.ViewModel
             _server.connectedEvent += UserConnected;
             _server.msgReceivedEvent += MessageReceived;
             _server.userDisconnectEvent += RemoveUser;
+
             ConnectToServerCommand = new RelayCommand(o => _server.ConnectToServer(Username), o => !string.IsNullOrEmpty(Username));
             SendMessageCommand = new RelayCommand(o => _server.SendMessageToServer(Message), o => !string.IsNullOrEmpty(Message));
+
             Messages = new ObservableCollection<MessageModel>();
             Contacts = new ObservableCollection<ContactModel>();
 
