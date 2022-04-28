@@ -84,6 +84,7 @@
     <Compile Include="Managers.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="SpecialUse\ClientChatEntities.cs" />
     <Compile Include="SpecialUse\ClientManager.cs" />
     <Compile Include="SpecialUse\FrameManager.cs" />
     <Compile Include="ModelBD.Context.cs">
