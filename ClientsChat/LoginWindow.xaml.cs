@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClientsChat.SpecialUse;
 
+
 namespace ClientsChat
 {
     /// <summary>
@@ -58,8 +59,13 @@ namespace ClientsChat
         {
             ClientManager.Login = Login;
             ClientManager.Password = Password;
-            Users user = ClientChatEntities.GetContext().Users.Where(x => x.Login == Login && x.Password == Password).ToList().First();
-            new MainWindow(user).Show();
+            Users user;
+            if (Login != "" && Password != "")
+            {
+                user = ClientChatEntities.GetContext().Users.Where(x => x.Login == Login && x.Password == Password).First();
+                new MainWindow(user).Show();
+            }
+            
             this.Close();
         }
     }

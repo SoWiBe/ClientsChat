@@ -33,8 +33,7 @@ namespace ClientsChat
         {
             InitializeComponent();
             _user = user;
-            MainFrame.Navigate(new ChatPage());
-            SetUsername(_user);
+            MainFrame.Navigate(new ChatPage(ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == _user.Id).First().FIO));
         }
 
         private void SetUsername(Users user)
@@ -42,9 +41,6 @@ namespace ClientsChat
             try
             {
                 Managers manager = ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == user.Id).First();
-                MainViewModel mainViewModel = new MainViewModel();
-                mainViewModel.Username = manager.FIO;
-                txtName.Text = manager.FIO;
             } 
             catch(Exception ex)
             {

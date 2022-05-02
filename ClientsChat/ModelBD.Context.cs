@@ -17,19 +17,16 @@ namespace ClientsChat
     
     public partial class ClientChatEntities : DbContext
     {
-
         private static ClientChatEntities _context;
-
-        public ClientChatEntities()
-            : base("name=ClientChatEntities")
-        {
-        }
-
         public static ClientChatEntities GetContext()
         {
             if (_context == null)
                 _context = new ClientChatEntities();
             return _context;
+        }
+        public ClientChatEntities()
+            : base("name=ClientChatEntities")
+        {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -13,10 +13,6 @@
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip">
 
-    <Window.DataContext>
-        <viewmodel:MainViewModel/>
-    </Window.DataContext>
-
     <Grid Background="#EFF6FC">
         <Grid.RowDefinitions>
             <RowDefinition Height="27*"/>
@@ -236,16 +232,7 @@
                     <Image Source="Icons/photo.png"
                         Height="60"
                         Width="60"/>
-                    <TextBox
-                        x:Name="txtName"
-                        Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
-                        Foreground="Black"
-                        TextAlignment="Center"
-                        FontWeight="SemiBold"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        FontSize="8"
-                        />
+                    
                 </StackPanel>
 
                 <Border Grid.Row="1"

@@ -20,9 +20,10 @@ namespace ClientsChat
     /// </summary>
     public partial class ChatPage : Page
     {
-        public ChatPage()
+        public ChatPage(string username)
         {
             InitializeComponent();
+            txtName.Text = username;
         }
     }
 }

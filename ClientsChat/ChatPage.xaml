@@ -6,32 +6,30 @@
       xmlns:local="clr-namespace:ClientsChat" xmlns:viewmodel="clr-namespace:ClientsChat.MVVM.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Height="650"
-      Width="1200"
+      Height="600"
+      Width="1000"
       Title="ChatPage">
 
     <Page.DataContext>
         <viewmodel:MainViewModel/>
     </Page.DataContext>
-    
-    
 
-   <Grid Grid.Column="1"
+    <Grid Grid.Column="1"
             Grid.Row="1"
             Background="#EFF6FC">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="274*"/>
-                <ColumnDefinition Width="445*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="80*"/>
-                    <RowDefinition Height="471*"/>
-                    <RowDefinition Height="72*"/>
-                </Grid.RowDefinitions>
-                <StackPanel
-                    Margin="15">
-                    <Border 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="274*"/>
+            <ColumnDefinition Width="445*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="448*"/>
+                <RowDefinition Height="69*"/>
+            </Grid.RowDefinitions>
+            <StackPanel
+                    Margin="15,15,15,0">
+                <Border 
                         Grid.Row="0"
                         Height="50px"
                         
@@ -40,14 +38,14 @@
                         BorderThickness="3"
                         Background="White"
                         >
-                        <StackPanel Margin="10"
+                    <StackPanel Margin="10"
                             Orientation="Horizontal"
                                     >
-                            <Image Source="Icons/bx_search.png"
+                        <Image Source="Icons/bx_search.png"
                                 Height="25"
                                 Width="25"/>
-                            <Grid>
-                                <TextBox
+                        <Grid>
+                            <TextBox
                                     x:Name="txtSearch1"
                                     BorderThickness="0"
                                     VerticalAlignment="Center"
@@ -57,7 +55,7 @@
                                     FontSize="20"
                                     FontFamily="Roboto"
                                     />
-                                <TextBlock IsHitTestVisible="False"
+                            <TextBlock IsHitTestVisible="False"
                                     Text="Search"
                                     TextAlignment="Left"
                                     VerticalAlignment="Center"
@@ -67,37 +65,51 @@
                                     Height="25"
                                     FontFamily="Roboto"
                                            >
-                                    <TextBlock.Style>
-                                        <Style TargetType="{x:Type TextBlock}">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Text, ElementName=txtSearch}" Value="">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
-                            </Grid>
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=txtSearch}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
 
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-                <StackPanel Grid.Row="1"
+                    </StackPanel>
+                </Border>
+                <TextBox
+                        x:Name="txtName"
+                        Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                        Foreground="#6E00FF"
+                        FontFamily="Roboto"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        TextAlignment="Center"
+                        FontWeight="SemiBold"
+                        IsEnabled="False"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Stretch"
+                        FontSize="18" Height="31"
+                        />
+            </StackPanel>
+            <StackPanel Grid.Row="1"
                     Grid.RowSpan="2"
                     Margin="15"
                             >
-                    <Border 
+                <Border 
                         CornerRadius="20"
                         BorderThickness="0"
                         Background="Transparent" Height="444">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="37*"/>
-                                <RowDefinition Height="389"/>
-                                <RowDefinition Height="12*"/>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="0" 
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="37*"/>
+                            <RowDefinition Height="389"/>
+                            <RowDefinition Height="12*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" 
                                 FontFamily="Roboto"
                                 Foreground="Black"
                                 FontSize="22"
@@ -107,7 +119,7 @@
                                 Margin="5,5,0,0" Height="34" Width="92"
                                 Content="Clients" Grid.RowSpan="2"
                                        />
-                            <ListView ItemsSource="{Binding Contacts}"
+                        <ListView ItemsSource="{Binding Contacts}"
                                 BorderThickness="0"
                                 SelectedItem="{Binding SelectedContact}"
                                 Grid.Row="1"
@@ -115,126 +127,126 @@
                                 Background="Transparent"
                                 ItemContainerStyle="{StaticResource ContactCard}" 
                                 Margin="10"/>
-                        </Grid>
-                    </Border>
-                </StackPanel>
-                <Button 
+                    </Grid>
+                </Border>
+            </StackPanel>
+            <Button 
                     Grid.Row="2"
                     Height="50"
                     Style="{StaticResource ConnectButton}"
                     VerticalAlignment="Top"
                     Command="{Binding ConnectToServerCommand}"/>
-            </Grid>
-            <Grid Grid.Column="1"
+        </Grid>
+        <Grid Grid.Column="1"
                 Background="#EFF6FC">
-                <Border 
+            <Border 
                     Grid.Row="0"
                     CornerRadius="15"
                     BorderBrush="LightGray"
                     BorderThickness="3"
                     Background="White" Margin="20,10,10,10">
-                    <Grid HorizontalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="85*"/>
-                            <RowDefinition Height="457*"/>
-                            <RowDefinition Height="65*"/>
-                        </Grid.RowDefinitions>
-                        <Border HorizontalAlignment="Stretch" 
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="85*"/>
+                        <RowDefinition Height="457*"/>
+                        <RowDefinition Height="65*"/>
+                    </Grid.RowDefinitions>
+                    <Border HorizontalAlignment="Stretch" 
                             VerticalAlignment="Center" Height="84"
                                  >
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Orientation="Horizontal" Margin="10"
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal" Margin="10"
                                             HorizontalAlignment="Stretch"
                                             VerticalAlignment="Center"
                                             >
-                                    <Image Source="{Binding SelectedContact.ImageSourse}"
+                                <Image Source="{Binding SelectedContact.ImageSourse}"
                                            Width="50" Height="50"
                                        />
-                                    <StackPanel HorizontalAlignment="Center"
+                                <StackPanel HorizontalAlignment="Center"
                                                 VerticalAlignment="Center">
-                                        <Label
+                                    <Label
                                         Content="{Binding SelectedContact.Username}"
                                         Foreground="Black"
                                         FontSize="14"
                                         FontWeight="SemiBold"
                                         />
-                                        <Label
+                                    <Label
                                         Content="Online - Last seen, 2.02pm"
                                         Foreground="Gray"
                                         FontSize="14"
                                         FontWeight="Light"
                                         />
-                                    </StackPanel>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal"
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Right"
                                             Grid.Column="1">
-                                    <Image Source="/Icons/phone.png" 
+                                <Image Source="/Icons/phone.png" 
                                            Width="30" Height="30"
                                            Margin="0 0 15 0"/>
-                                    <Image Source="/Icons/video.png" 
+                                <Image Source="/Icons/video.png" 
                                            Width="30" Height="30"
                                            Margin="0 0 15 0"/>
-                                    <Image Source="/Icons/dop_info.png" 
+                                <Image Source="/Icons/dop_info.png" 
                                            Width="30" Height="30"
                                            Margin="0 0 5 0"/>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                        <ListView
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <ListView
                             ItemsSource="{Binding Messages}"
                             Grid.Row="1"
                             Background="Transparent"
                             Margin="5"
                             ItemContainerStyle="{DynamicResource ChatItemOpponent}"
                             BorderThickness="0">
-                        </ListView>
+                    </ListView>
 
-                        <Grid Grid.Row="2"  Grid.RowSpan="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="60"/>
-                            </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="2"  Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="60"/>
+                        </Grid.ColumnDefinitions>
 
 
 
-                            <TextBox Grid.Column="0"
+                        <TextBox Grid.Column="0"
                                 Height="50"
                                 Text="Type your message here..."
                                 Style="{StaticResource MessageBox}"
                                 />
 
 
-                            <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right"
                                 Grid.Column="0"
                                 >
-                                <Image Source="Icons/smile.png" 
+                            <Image Source="Icons/smile.png" 
                                     Width="30" Height="30"
                                     RenderOptions.BitmapScalingMode="Fant"
                                     Margin="10"
                                     />
-                                <Image Source="Icons/create_photo.png" 
+                            <Image Source="Icons/create_photo.png" 
                                     Width="30" Height="30"
                                     RenderOptions.BitmapScalingMode="Fant"
                                     Margin="0 0 20 0"
                                     />
-                            </StackPanel>
+                        </StackPanel>
 
-                            <Button x:Name="btnSend"
+                        <Button x:Name="btnSend"
                                     Grid.Column="1"
                                     Margin="5"
                                     Width="50"
                                     Style="{StaticResource SendButton}"
                                     Command="{Binding SendMessageCommand}"/>
-                        </Grid>
                     </Grid>
+                </Grid>
 
-                </Border>
-            </Grid>
+            </Border>
         </Grid>
+    </Grid>
 </Page>
