@@ -54,6 +54,8 @@ namespace ClientsChat.MVVM.ViewModel
             Messages = new ObservableCollection<MessageModel>();
             Contacts = new ObservableCollection<ContactModel>();
 
+
+
             Contacts.Add(new ContactModel
             {
                 Username = "Aleksey",
