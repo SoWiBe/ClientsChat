@@ -21,10 +21,14 @@
                                      Background="Transparent"
                                      BorderThickness="0"
                                      FontSize="20"
-                                     Text="{Binding Path=Login}"
                                      Foreground="Gray"
                                      CaretBrush="Gray"
-                                     Margin="40 0 0 0"/>
+                                     Margin="40 0 0 0">
+                                <TextBox.Text>
+                                    <Binding Path="Login">
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
                             <TextBlock IsHitTestVisible="False"
                                        Text="Login"
                                        FontSize="20"

@@ -88,6 +88,7 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Compile Include="ClientChatEntities.cs" />
+    <Compile Include="MVVM\Model\PersonModel.cs" />
     <Compile Include="SpecialUse\ClientManager.cs" />
     <Compile Include="SpecialUse\FrameManager.cs" />
     <Compile Include="ModelBD.Context.cs">
