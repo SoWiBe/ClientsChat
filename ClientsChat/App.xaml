@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="./Themes/MessageBox.xaml"/>
                 <ResourceDictionary Source="./Themes/StylishScrollbar.xaml"/>
                 <ResourceDictionary Source="./Themes/ConnectButton.xaml"/>
+                <ResourceDictionary Source="./Themes/ConfirmButton.xaml"/>
                 <ResourceDictionary Source="./Themes/SendButton.xaml"/>
                 <ResourceDictionary Source="./Themes/CustomTextBox.xaml"/>
                 <ResourceDictionary Source="./Themes/CustomTextBoxFirstName.xaml"/>

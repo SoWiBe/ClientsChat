@@ -34,6 +34,7 @@
           <Property Name="IdClient" Type="int" />
           <Property Name="Direction" Type="nvarchar" MaxLength="50" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Info" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -194,6 +195,7 @@
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Clients" Relationship="Self.FK_Question_Clients" FromRole="Question" ToRole="Clients" />
           <NavigationProperty Name="Managers" Relationship="Self.FK_Question_Managers" FromRole="Question" ToRole="Managers" />
+          <Property Name="Info" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -358,6 +360,7 @@
           <EntitySetMapping Name="Question">
             <EntityTypeMapping TypeName="ClientChatModel.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Info" ColumnName="Info" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdManager" ColumnName="IdManager" />
                 <ScalarProperty Name="IdClient" ColumnName="IdClient" />

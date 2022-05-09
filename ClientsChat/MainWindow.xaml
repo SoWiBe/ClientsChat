@@ -93,32 +93,9 @@
 
                 </StackPanel>
 
+               
                 <Border Grid.Row="1"
                     BorderThickness="0,0,4,0">
-                    <Border.Style>
-                        <Style TargetType="{x:Type Border}">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding StatusHome}" Value="True">
-                                    <Setter Property="Background" Value="#612DD1"/>
-                                    <Setter Property="BorderBrush" Value="Gold"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Border.Style>
-                    <StackPanel Grid.Row="1"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Height="30" 
-                        Width="30">
-                        <Image Source="Icons/codicon_home.png"
-                            Height="30"
-                            Width="30"/>
-                    </StackPanel>
-                </Border>
-
-                <Border Grid.Row="2"
-                    BorderThickness="0,0,4,0"
-                        >
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Style.Triggers>
@@ -139,6 +116,32 @@
                         Height="25"
                         Width="25">
                         <Image Source="Icons/chat.png"
+                            Height="25"
+                            Width="25"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Row="2"
+                    BorderThickness="0,0,4,0">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding StatusChat}" Value="True">
+                                    <Setter Property="Background" Value="#612DD1"/>
+                                    <Setter Property="BorderBrush" Value="Gold"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding StatusChat}" Value="False">
+                                    <Setter Property="Background" Value="#6E00FF"/>
+                                    <Setter Property="BorderBrush" Value="#6E00FF"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <StackPanel 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" 
+                        Height="25"
+                        Width="25">
+                        <Image Source="Icons/question-mark-4-64.png"
                             Height="25"
                             Width="25"/>
                     </StackPanel>
@@ -208,7 +211,6 @@
                x:Name="RegistrFrame" 
                Content=""
                NavigationUIVisibility="Hidden">
-            
         </Frame>
         
         

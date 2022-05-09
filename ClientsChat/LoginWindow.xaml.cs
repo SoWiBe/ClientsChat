@@ -40,6 +40,7 @@ namespace ClientsChat
             if(string.IsNullOrWhiteSpace(Login))
             {
                 MessageBox.Show("Введите логин!");
+                CustomMessageBox.OpenBox("Введите логин!");
                 return;
             }
             else if (string.IsNullOrWhiteSpace(Password))

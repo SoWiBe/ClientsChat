@@ -19,6 +19,7 @@ namespace ClientsChat
         public Nullable<int> IdClient { get; set; }
         public string Direction { get; set; }
         public string Status { get; set; }
+        public string Info { get; set; }
     
         public virtual Clients Clients { get; set; }
         public virtual Managers Managers { get; set; }

@@ -23,7 +23,6 @@ namespace ClientsChat
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private Users _user;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,8 +31,8 @@ namespace ClientsChat
             FrameManager.BorderMenu.Visibility = Visibility.Hidden;
             FrameManager.RegistrFrame = RegistrFrame;
             FrameManager.RegistrFrame.Navigate(new LoginWindow());
-            //MainFrame.Navigate(new ChatPage(ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == _user.Id).First().FIO));
         }
+
         //Realization click to menu items
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         protected void OnPropertyChanged(string property)
