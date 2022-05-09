@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ClientsChat.SpecialUse;
      
 namespace ClientsChat
 {
@@ -22,73 +23,17 @@ namespace ClientsChat
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public bool StatusHome { get; set; }
-        public bool StatusChat { get; set; }
-        public bool StatusBell { get; set; }
-        public bool StatusSettings { get; set; }
-
-        private bool[] _isMenuItemsClicks = new bool[] { false, false, false, false};
         private Users _user;
-        public MainWindow(Users user)
+        public MainWindow()
         {
             InitializeComponent();
-            _user = user;
-            MainFrame.Navigate(new ChatPage(ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == _user.Id).First().FIO));
+            FrameManager.MainFrame = MainFrame;
+            FrameManager.BorderMenu = BorderMenu;
+            FrameManager.BorderMenu.Visibility = Visibility.Hidden;
+            FrameManager.RegistrFrame = RegistrFrame;
+            FrameManager.RegistrFrame.Navigate(new LoginWindow());
+            //MainFrame.Navigate(new ChatPage(ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == _user.Id).First().FIO));
         }
-
-        private void SetUsername(Users user)
-        {
-            try
-            {
-                Managers manager = ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == user.Id).First();
-            } 
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        private void MenuHomeClick(object sender, RoutedEventArgs e)
-        {
-            ResetClicks(0);
-            ChangeClicks(1, StatusHome);
-            OnPropertyChanged("StatusHome");
-        }
-        private void MenuChatClick(object sender, RoutedEventArgs e)
-        {
-            ResetClicks(1);
-            ChangeClicks(1,  StatusChat);
-            OnPropertyChanged("StatusChat");
-        }
-        private void MenuBellClick(object sender, RoutedEventArgs e)
-        {
-            ResetClicks(2);
-            ChangeClicks(2, StatusBell);
-            OnPropertyChanged("StatusBell");
-        }
-        private void MenuSettingsClick(object sender, RoutedEventArgs e)
-        {
-            ResetClicks(3);
-            ChangeClicks(3,  StatusSettings);
-            OnPropertyChanged("StatusSettings");
-        }
-
-        private void ChangeClicks(int position, bool status)
-        {
-            _isMenuItemsClicks[position] = !_isMenuItemsClicks[position];
-            StatusChat = _isMenuItemsClicks[position];
-        }
-
-        public void ResetClicks(int position)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                if (i != position)
-                {
-
-                }
-            }     
-        }
-
         //Realization click to menu items
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         protected void OnPropertyChanged(string property)
@@ -119,6 +64,12 @@ namespace ClientsChat
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void stackExit_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            FrameManager.RegistrFrame.Navigate(new LoginWindow());
+            FrameManager.MainFrame.Navigate(null);
         }
     }
 }

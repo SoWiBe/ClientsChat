@@ -13,7 +13,7 @@
                         Width="300">
                         <Label
                         FontWeight="SemiBold"
-                        Content="Connect"
+                        Content="Войти"
                         Foreground="White"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"

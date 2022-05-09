@@ -5,10 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientsChat"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="650" 
-        Width="1200" >
+        Title="LoginWindow" Height="650" Width="1200">
 
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="27*"/>
             <RowDefinition Height="623*"/>
@@ -17,7 +16,7 @@
         <Grid Grid.Row="1">
             <StackPanel HorizontalAlignment="Center"
                         VerticalAlignment="Center">
-                <Label Content="Sign In"
+                <Label Content="Авторизация"
                        FontSize="30"
                        HorizontalAlignment="Center"
                        FontFamily="Roboto"
@@ -38,6 +37,16 @@
                     x:Name="btnConnect"
                     Style="{StaticResource EnterButton}"
                     Click="btnConnect_Click"/>
+
+                <Label Content="Регистрация"
+                       FontSize="18"
+                       HorizontalAlignment="Center"
+                       FontFamily="Roboto"
+                       Margin="0 10"
+                       Foreground="Gray"
+                       FontWeight="SemiBold"
+                       MouseDown="Label_MouseDown"
+                       />
             </StackPanel>
         </Grid>
     </Grid>

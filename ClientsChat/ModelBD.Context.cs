@@ -21,7 +21,14 @@ namespace ClientsChat
             : base("name=ClientChatEntities")
         {
         }
-    
+
+        private static ClientChatEntities _context;
+        public static ClientChatEntities GetContext()
+        {
+            if (_context == null)
+                _context = new ClientChatEntities();
+            return _context;
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

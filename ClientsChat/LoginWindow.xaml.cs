@@ -23,7 +23,6 @@ namespace ClientsChat
     /// </summary>
     public partial class LoginWindow : Page
     {
-        private PersonModel User;
         public string Login { get; set; }
         public string Password { get; set; }
 
@@ -33,8 +32,6 @@ namespace ClientsChat
             DataContext = this;
         }
 
-       
-
         private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
             ClientManager.Login = Login;
@@ -43,24 +40,36 @@ namespace ClientsChat
             if(string.IsNullOrWhiteSpace(Login))
             {
                 MessageBox.Show("Введите логин!");
+                return;
             }
             else if (string.IsNullOrWhiteSpace(Password))
             {
                 MessageBox.Show("Введите пароль!");
+                return;
             }
-            else if(ClientChatEntities.GetContext().Users.Where(x => x.Login == Login && x.Password == Password) == null)
+            else if(ClientChatEntities.GetContext().Users.Where(x => x.Login == Login && x.Password == Password).Count() == 0)
             {
-                MessageBox.Show("Такого юзера нет!");
+                MessageBox.Show("Такого пользователя нет!");
+                return;
             }
             else
             {
-                MessageBox.Show(ClientChatEntities.GetContext().Users.Where(x => x.Login == Login && x.Password == Password).ToString());
+                user = ClientChatEntities.GetContext().Users.Where(x => x.Login == Login && x.Password == Password).First();
+
+                FrameManager.BorderMenu.Visibility = Visibility.Visible;
+                FrameManager.MainFrame.Navigate(new ChatPage(ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == user.Id).First().FIO));
+                FrameManager.RegistrFrame.Navigate(null);
             }
-                
-            //user = ClientChatEntities.GetContext().Users.Where(x => x.Login == Login && x.Password == Password).First();
-           
+
+
+
             //new MainWindow(user).Show();
             //this.Close();
+        }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            FrameManager.RegistrFrame.Navigate(new SignUpPage());
         }
     }
 }

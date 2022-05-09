@@ -22,14 +22,14 @@
             <ColumnDefinition Width="80*"/>
             <ColumnDefinition Width="683*"/>
         </Grid.ColumnDefinitions>
-       
+
         <Border Grid.ColumnSpan="2" Grid.Row="0"
                 Background="#6E00FF"
                 MouseDown="Border_MouseDown">
 
             <Grid HorizontalAlignment="Stretch"
-                  Margin="27 0 10 0">
-                <Label Content="ClientsChat"
+                  Margin="18 0 10 0">
+                <Label Content="Manager Chat"
                        Foreground="White"
                        FontWeight="SemiBold"
                        VerticalAlignment="Center"  
@@ -67,148 +67,6 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <Border 
-                BorderBrush="#EFF6FC"
-                BorderThickness="1" 
-                Grid.Row="1">
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="65*"/>
-                    <RowDefinition Height="35*"/>
-                    <RowDefinition Height="35*"/>
-                    <RowDefinition Height="35*"/>
-                    <RowDefinition Height="35*"/>
-                    <RowDefinition Height="80*"/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Height="80" 
-                            Width="80">
-                    <Image Source="/Icons/photo.png"
-                           Height="80"
-                           Width="80">
-                    </Image>
-                </StackPanel>
-
-                <Border Grid.Row="1"
-                        BorderThickness="0,0,4,0"
-                        MouseDown="MenuHomeClick">
-                    <Border.Style>
-                        <Style TargetType="Border">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding StatusHome}" Value="True">
-                                    <Setter Property="Background" Value="#612DD1"/>
-                                    <Setter Property="BorderBrush" Value="Gold"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Border.Style>
-                    <StackPanel Grid.Row="1"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Height="60" 
-                            Width="60">
-                        <Image Source="/Icons/codicon_home.png"
-                           Height="60"
-                           Width="60">
-                        </Image>
-                    </StackPanel>
-                </Border>
-
-                <Border Grid.Row="2"
-                        BorderThickness="0,0,4,0"
-                        MouseDown="MenuChatClick"
-                        >
-                    <Border.Style>
-                        <Style TargetType="Border">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding StatusChat}" Value="True">
-                                    <Setter Property="Background" Value="#612DD1"/>
-                                    <Setter Property="BorderBrush" Value="Gold"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding StatusChat}" Value="False">
-                                    <Setter Property="Background" Value="#6E00FF"/>
-                                    <Setter Property="BorderBrush" Value="#6E00FF"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Border.Style>
-                    <StackPanel 
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center" 
-                            Height="45"
-                            Width="45">
-                        <Image Source="/Icons/chat.png"
-                           Height="45"
-                           Width="45">
-                        </Image>
-                    </StackPanel>
-                </Border>
-                <Border Grid.Row="3"
-                        BorderThickness="0,0,4,0"
-                        MouseDown="MenuBellClick"
-                        >
-                    <Border.Style>
-                        <Style TargetType="Border">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding StatusBell}" Value="True">
-                                    <Setter Property="Background" Value="#612DD1"/>
-                                    <Setter Property="BorderBrush" Value="Gold"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Border.Style>
-                    <StackPanel Grid.Row="3"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center" 
-                            Height="60" 
-                            Width="60">
-                        <Image Source="/Icons/bell.png"
-                           Height="60"
-                           Width="60">
-                        </Image>
-                    </StackPanel>
-                </Border>
-                <Border Grid.Row="4"
-                        BorderThickness="0,0,4,0"
-                        MouseDown="MenuSettingsClick"
-                        >
-                    <Border.Style>
-                        <Style TargetType="Border">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding StatusSettings}" Value="True">
-                                    <Setter Property="Background" Value="#612DD1"/>
-                                    <Setter Property="BorderBrush" Value="Gold"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Border.Style>
-                    <StackPanel Grid.Row="4" 
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Height="60" 
-                            Width="60">
-                        <Image Source="/Icons/ci_settings.png"
-                           Height="60"
-                           Width="60">
-                        </Image>
-                    </StackPanel>
-                </Border>
-
-                <StackPanel Grid.Row="5"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Bottom"
-                            Margin="0 0 0 30"
-                            Height="60" 
-                            Width="60">
-                    <Image Source="/Icons/exit.png"
-                           Height="60"
-                           Width="60">
-                    </Image>
-                </StackPanel>
-            </Grid>
-        </Border >
         <Border
             x:Name="BorderMenu"
             Margin="20"
@@ -232,12 +90,11 @@
                     <Image Source="Icons/photo.png"
                         Height="60"
                         Width="60"/>
-                    
+
                 </StackPanel>
 
                 <Border Grid.Row="1"
-                    BorderThickness="0,0,4,0"
-                    MouseDown="MenuHomeClick">
+                    BorderThickness="0,0,4,0">
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Style.Triggers>
@@ -261,7 +118,6 @@
 
                 <Border Grid.Row="2"
                     BorderThickness="0,0,4,0"
-                    MouseDown="MenuChatClick"
                         >
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
@@ -289,7 +145,6 @@
                 </Border>
                 <Border Grid.Row="3"
                     BorderThickness="0,0,4,0"
-                    MouseDown="MenuBellClick"
                         >
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
@@ -312,8 +167,6 @@
                     </StackPanel>
                 </Border>
                 <Border Grid.Row="4"
-                    BorderThickness="0,0,4,0"
-                    MouseDown="MenuSettingsClick"
                         >
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
@@ -336,18 +189,29 @@
                     </StackPanel>
                 </Border>
 
-                <StackPanel Grid.Row="5"
+                <StackPanel 
+                    x:Name="stackExit"
+                    Grid.Row="5"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     Margin="0 0 0 30"
-                    Height="30" 
-                    Width="30">
+                    MouseDown="stackExit_MouseDown"
+                    Height="30" Width="30">
                     <Image Source="Icons/exit.png"
                         Height="30"
                         Width="30"/>
                 </StackPanel>
             </Grid>
         </Border>
+        <Frame Grid.Row="1" 
+               Grid.ColumnSpan="2" 
+               x:Name="RegistrFrame" 
+               Content=""
+               NavigationUIVisibility="Hidden">
+            
+        </Frame>
+        
+        
         <Grid Grid.Column="1"
               Grid.Row="1">
             <Frame NavigationUIVisibility="Hidden" x:Name="MainFrame"/>
