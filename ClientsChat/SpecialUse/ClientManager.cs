@@ -10,5 +10,8 @@ namespace ClientsChat.SpecialUse
     {
         public static string Login { get; set; }
         public static string Password { get; set; }
+
+        public static string Name { get; set; }
+        public static int Id { get; set; }
     }
 }

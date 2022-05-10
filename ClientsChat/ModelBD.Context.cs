@@ -36,9 +36,10 @@ namespace ClientsChat
     
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<Managers> Managers { get; set; }
-        public virtual DbSet<Question> Question { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Directions> Directions { get; set; }
+        public virtual DbSet<Question> Question { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

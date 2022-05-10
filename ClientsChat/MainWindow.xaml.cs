@@ -70,5 +70,15 @@ namespace ClientsChat
             FrameManager.RegistrFrame.Navigate(new LoginWindow());
             FrameManager.MainFrame.Navigate(null);
         }
+
+        private void borderQuestion_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            FrameManager.MainFrame.Navigate(new QuestionPage());
+        }
+
+        private void borderChat_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            FrameManager.MainFrame.Navigate(new ChatPage(ClientManager.Name));
+        }
     }
 }

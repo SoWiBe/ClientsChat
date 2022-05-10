@@ -1,0 +1,55 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="ListViewItem" x:Key="QuestionCard">
+        <Style.Triggers>
+            <Trigger Property="IsSelected"
+                      Value="True">
+                <Setter Property="Background" Value="LightBlue"/>
+            </Trigger>
+            
+        </Style.Triggers>
+        <Setter Property="Background" Value="White"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border Background="White"
+                            Height="100"
+                            CornerRadius="4"
+                            Margin="10"
+                            Padding="10">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                            <Ellipse Width="30" Height="30">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding Clients.ImageNew}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+
+                            <StackPanel VerticalAlignment="Center">
+                                <Label Content="{Binding Directions.Name}" 
+                                           Foreground="#6E00FF"
+                                           FontFamily="Roboto"
+                                           FontSize="15"
+                                           FontWeight="SemiBold"/>
+                                <Label Content="{Binding Info}" 
+                                           Foreground="Black" 
+                                           FontFamily="Roboto"
+                                           FontSize="15"
+                                           FontWeight="Bold"/>
+                                <Label Content="{Binding Clients.FIO}" 
+                                           Foreground="Gray" 
+                                           FontFamily="Roboto" 
+                                           FontSize="10"
+                                           FontWeight="SemiBold"/>
+                            </StackPanel>
+                            
+                            
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

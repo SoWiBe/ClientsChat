@@ -23,10 +23,20 @@ namespace ClientsChat
         public int Id { get; set; }
         public string FIO { get; set; }
         public string Image { get; set; }
+        public string ImageNew
+        {
+            get
+            {
+                if (Image != null)
+                    return Image;
+                return "E:/C#/ClientsChat/ClientsChat/Icons/group1.png";
+            }
+            set { }
+        }
         public Nullable<int> IdUser { get; set; }
     
+        public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Question> Question { get; set; }
-        public virtual Users Users { get; set; }
     }
 }

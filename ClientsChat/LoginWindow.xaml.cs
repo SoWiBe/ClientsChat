@@ -40,7 +40,6 @@ namespace ClientsChat
             if(string.IsNullOrWhiteSpace(Login))
             {
                 MessageBox.Show("Введите логин!");
-                CustomMessageBox.OpenBox("Введите логин!");
                 return;
             }
             else if (string.IsNullOrWhiteSpace(Password))
@@ -56,9 +55,12 @@ namespace ClientsChat
             else
             {
                 user = ClientChatEntities.GetContext().Users.Where(x => x.Login == Login && x.Password == Password).First();
-
+                string FIO = ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == user.Id).First().FIO;
+                int Id = ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == user.Id).First().Id;
+                ClientManager.Name = FIO;
+                ClientManager.Id = Id; 
                 FrameManager.BorderMenu.Visibility = Visibility.Visible;
-                FrameManager.MainFrame.Navigate(new ChatPage(ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == user.Id).First().FIO));
+                FrameManager.MainFrame.Navigate(new ChatPage(FIO));
                 FrameManager.RegistrFrame.Navigate(null);
             }
 

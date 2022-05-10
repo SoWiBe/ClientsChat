@@ -92,21 +92,17 @@
                         Width="60"/>
 
                 </StackPanel>
-
-               
-                <Border Grid.Row="1"
-                    BorderThickness="0,0,4,0">
+                <Border
+                    Grid.Row="1"
+                    BorderThickness="0,0,4,0"
+                    x:Name="borderChat"
+                    MouseDown="borderChat_MouseDown">
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding StatusChat}" Value="True">
+                                <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#612DD1"/>
-                                    <Setter Property="BorderBrush" Value="Gold"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding StatusChat}" Value="False">
-                                    <Setter Property="Background" Value="#6E00FF"/>
-                                    <Setter Property="BorderBrush" Value="#6E00FF"/>
-                                </DataTrigger>
+                                </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
@@ -121,18 +117,15 @@
                     </StackPanel>
                 </Border>
                 <Border Grid.Row="2"
-                    BorderThickness="0,0,4,0">
+                    BorderThickness="0,0,4,0"
+                    x:Name="borderQuestion"
+                    MouseDown="borderQuestion_MouseDown">
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding StatusChat}" Value="True">
+                                <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#612DD1"/>
-                                    <Setter Property="BorderBrush" Value="Gold"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding StatusChat}" Value="False">
-                                    <Setter Property="Background" Value="#6E00FF"/>
-                                    <Setter Property="BorderBrush" Value="#6E00FF"/>
-                                </DataTrigger>
+                                </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
@@ -147,15 +140,13 @@
                     </StackPanel>
                 </Border>
                 <Border Grid.Row="3"
-                    BorderThickness="0,0,4,0"
-                        >
+                    BorderThickness="0,0,4,0">
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding StatusBell}" Value="True">
+                                <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#612DD1"/>
-                                    <Setter Property="BorderBrush" Value="Gold"/>
-                                </DataTrigger>
+                                </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
@@ -174,10 +165,9 @@
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding StatusSettings}" Value="True">
+                                <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#612DD1"/>
-                                    <Setter Property="BorderBrush" Value="Gold"/>
-                                </DataTrigger>
+                                </Trigger>
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
@@ -192,18 +182,29 @@
                     </StackPanel>
                 </Border>
 
-                <StackPanel 
+                <Grid 
                     x:Name="stackExit"
                     Grid.Row="5"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
-                    Margin="0 0 0 30"
+                    Margin="0,0,0,10"
                     MouseDown="stackExit_MouseDown"
-                    Height="30" Width="30">
-                    <Image Source="Icons/exit.png"
+                    Height="71" Width="84">
+                    <Grid.Style>
+                        <Style TargetType="{x:Type Grid}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#612DD1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <Image 
+                        Source="Icons/exit.png"
                         Height="30"
+                        VerticalAlignment="Center"
                         Width="30"/>
-                </StackPanel>
+                </Grid>
             </Grid>
         </Border>
         <Frame Grid.Row="1" 
@@ -212,8 +213,8 @@
                Content=""
                NavigationUIVisibility="Hidden">
         </Frame>
-        
-        
+
+
         <Grid Grid.Column="1"
               Grid.Row="1">
             <Frame NavigationUIVisibility="Hidden" x:Name="MainFrame"/>

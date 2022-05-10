@@ -24,63 +24,13 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100*"/>
-                <RowDefinition Height="448*"/>
-                <RowDefinition Height="69*"/>
+                <RowDefinition Height="51*"/>
+                <RowDefinition Height="482*"/>
+                <RowDefinition Height="67*"/>
             </Grid.RowDefinitions>
             <StackPanel
                     Margin="15,15,15,0">
-                <Border 
-                        Grid.Row="0"
-                        Height="50px"
-                        
-                        CornerRadius="20"
-                        BorderBrush="LightGray"
-                        BorderThickness="3"
-                        Background="White"
-                        >
-                    <StackPanel Margin="10"
-                            Orientation="Horizontal"
-                                    >
-                        <Image Source="Icons/bx_search.png"
-                                Height="25"
-                                Width="25"/>
-                        <Grid>
-                            <TextBox
-                                    x:Name="txtSearch1"
-                                    BorderThickness="0"
-                                    VerticalAlignment="Center"
-                                    TextAlignment="Left"
-                                    Foreground="#7C7C7C"
-                                    Margin="5px 2 0 2px"
-                                    FontSize="20"
-                                    FontFamily="Roboto"
-                                    />
-                            <TextBlock IsHitTestVisible="False"
-                                    Text="Search"
-                                    TextAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    FontSize="20px"
-                                    Foreground="#7C7C7C"
-                                    Margin="5 5 0 2"
-                                    Height="25"
-                                    FontFamily="Roboto"
-                                           >
-                                <TextBlock.Style>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=txtSearch}" Value="">
-                                                <Setter Property="Visibility" Value="Visible"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </Grid>
 
-                    </StackPanel>
-                </Border>
                 <TextBox
                         x:Name="txtName"
                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
@@ -125,7 +75,6 @@
                                 SelectedItem="{Binding SelectedContact}"
                                 Grid.Row="1"
                                 Height="350"
-                                
                                 Background="Transparent"
                                 ItemContainerStyle="{StaticResource ContactCard}" 
                                 Margin="10">
@@ -138,12 +87,6 @@
                     </Grid>
                 </Border>
             </StackPanel>
-            <Button 
-                    Grid.Row="2"
-                    Height="50"
-                    Style="{StaticResource ConnectButton}"
-                    VerticalAlignment="Top"
-                    Command="{Binding ConnectToServerCommand}"/>
         </Grid>
         <Grid Grid.Column="1"
                 Background="#EFF6FC">

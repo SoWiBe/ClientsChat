@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace ClientsChat
     /// </summary>
     public partial class QuestionPage : Page
     {
+        
         public QuestionPage()
         {
             InitializeComponent();
