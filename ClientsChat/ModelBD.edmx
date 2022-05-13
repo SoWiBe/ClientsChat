@@ -40,8 +40,15 @@
           <Property Name="IdManager" Type="int" />
           <Property Name="IdClient" Type="int" />
           <Property Name="IdDirection" Type="int" />
-          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdStatus" Type="int" />
           <Property Name="Info" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -121,6 +128,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Question_Statuses">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -157,6 +176,7 @@
           <EntitySet Name="Directions" EntityType="Self.Directions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Managers" EntityType="Self.Managers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Clients_Users" Association="Self.FK_Clients_Users">
@@ -177,6 +197,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Question_Managers" Association="Self.FK_Question_Managers">
             <End Role="Managers" EntitySet="Managers" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Statuses" Association="Self.FK_Question_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
             <End Role="Question" EntitySet="Question" />
           </AssociationSet>
         </EntityContainer>
@@ -262,6 +286,7 @@
             <End Role="Managers" EntitySet="Managers" />
           </AssociationSet>
           <EntitySet Name="Directions" EntityType="ClientChatModel.Directions" />
+          <EntitySet Name="Statuses" EntityType="ClientChatModel.Statuses" />
           <EntitySet Name="Question" EntityType="ClientChatModel.Question" />
           <AssociationSet Name="FK_Question_Clients" Association="ClientChatModel.FK_Question_Clients">
             <End Role="Clients" EntitySet="Clients" />
@@ -273,6 +298,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Question_Managers" Association="ClientChatModel.FK_Question_Managers">
             <End Role="Managers" EntitySet="Managers" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Statuses" Association="ClientChatModel.FK_Question_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
             <End Role="Question" EntitySet="Question" />
           </AssociationSet>
         </EntityContainer>
@@ -329,6 +358,14 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Question" Relationship="ClientChatModel.FK_Question_Directions" FromRole="Directions" ToRole="Question" />
         </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Question" Relationship="ClientChatModel.FK_Question_Statuses" FromRole="Statuses" ToRole="Question" />
+        </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="Id" />
@@ -337,11 +374,12 @@
           <Property Name="IdManager" Type="Int32" />
           <Property Name="IdClient" Type="Int32" />
           <Property Name="IdDirection" Type="Int32" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdStatus" Type="Int32" />
           <Property Name="Info" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Clients" Relationship="ClientChatModel.FK_Question_Clients" FromRole="Question" ToRole="Clients" />
           <NavigationProperty Name="Directions" Relationship="ClientChatModel.FK_Question_Directions" FromRole="Question" ToRole="Directions" />
           <NavigationProperty Name="Managers" Relationship="ClientChatModel.FK_Question_Managers" FromRole="Question" ToRole="Managers" />
+          <NavigationProperty Name="Statuses" Relationship="ClientChatModel.FK_Question_Statuses" FromRole="Question" ToRole="Statuses" />
         </EntityType>
         <Association Name="FK_Question_Clients">
           <End Type="ClientChatModel.Clients" Role="Clients" Multiplicity="0..1" />
@@ -376,6 +414,18 @@
             </Principal>
             <Dependent Role="Question">
               <PropertyRef Name="IdManager" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Statuses">
+          <End Type="ClientChatModel.Statuses" Role="Statuses" Multiplicity="0..1" />
+          <End Type="ClientChatModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="IdStatus" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -459,11 +509,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Statuses">
+            <EntityTypeMapping TypeName="ClientChatModel.Statuses">
+              <MappingFragment StoreEntitySet="Statuses">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Question">
             <EntityTypeMapping TypeName="ClientChatModel.Question">
               <MappingFragment StoreEntitySet="Question">
                 <ScalarProperty Name="Info" ColumnName="Info" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
                 <ScalarProperty Name="IdDirection" ColumnName="IdDirection" />
                 <ScalarProperty Name="IdClient" ColumnName="IdClient" />
                 <ScalarProperty Name="IdManager" ColumnName="IdManager" />

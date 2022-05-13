@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,13 +16,19 @@ using System.Windows.Shapes;
 namespace ClientsChat
 {
     /// <summary>
-    /// Логика взаимодействия для QuestionPage.xaml
+    /// Логика взаимодействия для ProfilePage.xaml
     /// </summary>
-    public partial class QuestionPage : Page
+    public partial class ProfilePage : Page
     {
-        public QuestionPage()
+        public ProfilePage()
         {
             InitializeComponent();
+        }
+
+        private void btnChange_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ChooseImageWindow chooseImageWindow = new ChooseImageWindow();
+            chooseImageWindow.ShowDialog();
         }
     }
 }

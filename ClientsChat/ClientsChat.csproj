@@ -76,6 +76,11 @@
     <Compile Include="ChatPage.xaml.cs">
       <DependentUpon>ChatPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChooseImageWindow.xaml.cs">
+      <DependentUpon>ChooseImageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Class2.cs" />
     <Compile Include="Clients.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -93,9 +98,14 @@
     <Compile Include="Managers.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
-    <Compile Include="ClientChatEntities.cs" />
     <Compile Include="MVVM\Model\PersonModel.cs" />
+    <Compile Include="MVVM\Model\ProfileImage.cs" />
+    <Compile Include="MVVM\ViewModel\ChooseImagesModel.cs" />
+    <Compile Include="MVVM\ViewModel\ProfilePageModel.cs" />
     <Compile Include="MVVM\ViewModel\QuestionPageModel.cs" />
+    <Compile Include="ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="QuestionPage.xaml.cs">
       <DependentUpon>QuestionPage.xaml</DependentUpon>
     </Compile>
@@ -132,6 +142,9 @@
     <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="Statuses.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
@@ -139,6 +152,10 @@
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
     <Page Include="ChatPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChooseImageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,6 +179,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="QuestionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\SendButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\StartToSolveButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -329,6 +354,7 @@
     <Resource Include="Icons\user.png" />
     <Resource Include="Icons\question.png" />
     <Resource Include="Icons\question-mark-4-64.png" />
+    <Resource Include="Icons\2931178_change_edit_pencil_creative_design_icon.png" />
     <Content Include="ModelBD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelBD.Context.cs</LastGenOutput>

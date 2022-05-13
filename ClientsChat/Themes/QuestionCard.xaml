@@ -44,8 +44,8 @@
                                            FontSize="10"
                                            FontWeight="SemiBold"/>
                             </StackPanel>
-                            
-                            
+
+                            <Button Style="{StaticResource StartToSolveButton}" />
                         </StackPanel>
                     </Border>
                 </ControlTemplate>

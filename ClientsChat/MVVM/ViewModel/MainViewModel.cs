@@ -17,7 +17,7 @@ namespace ClientsChat.MVVM.ViewModel
         
         public ObservableCollection<UserModel> Users { get; set; }
         public ObservableCollection<MessageModel> Messages { get; set; }
-        public ObservableCollection<ContactModel> Contacts { get; set; }
+        public ObservableCollection<Clients> Clients { get; set; }
         public string Username { get; set; }
 
         /* Commands */
@@ -27,8 +27,8 @@ namespace ClientsChat.MVVM.ViewModel
 
         private Server _server;
 
-        private ContactModel _selectedContact;
-        public ContactModel SelectedContact
+        private Clients _selectedContact;
+        public Clients SelectedContact
         {
             get { return _selectedContact; }
             set
@@ -52,60 +52,14 @@ namespace ClientsChat.MVVM.ViewModel
             SendMessageCommand = new RelayCommand(o => _server.SendMessageToServer(Message), o => !string.IsNullOrEmpty(Message));
 
             Messages = new ObservableCollection<MessageModel>();
-            Contacts = new ObservableCollection<ContactModel>();
+            Clients = new ObservableCollection<Clients>();
 
 
-
-            Contacts.Add(new ContactModel
+            var listQuestions = ClientChatEntities.GetContext().Question.Where(x => x.IdManager == ClientManager.Id && x.IdStatus == 1).ToList();
+            for (int i = 0; i < listQuestions.Count(); i++)
             {
-                Username = "Aleksey",
-                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group2.png"
-            });
-            Contacts.Add(new ContactModel
-            {
-                Username = "Stas",
-                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group3.png"
-            });
-            Contacts.Add(new ContactModel
-            {
-                Username = "Slava",
-                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group1.png"
-            });
-            Contacts.Add(new ContactModel
-            {
-                Username = "Maria",
-                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/photo.png"
-            });
-            Contacts.Add(new ContactModel
-            {
-                Username = "Mixa",
-                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group2.png"
-            });
-            Contacts.Add(new ContactModel
-            {
-                Username = "Aleksey",
-                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group2.png"
-            });
-            Contacts.Add(new ContactModel
-            {
-                Username = "Stas",
-                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group3.png"
-            });
-            Contacts.Add(new ContactModel
-            {
-                Username = "Slava",
-                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group1.png"
-            });
-            Contacts.Add(new ContactModel
-            {
-                Username = "Maria",
-                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/photo.png"
-            });
-            Contacts.Add(new ContactModel
-            {
-                Username = "Mixa",
-                ImageSourse = "E:/C#/ClientsChat/ClientsChat/Icons/group2.png"
-            });
+                Clients.Add(listQuestions.ElementAt(i).Clients);
+            }
         }
 
         private void RemoveUser()

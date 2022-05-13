@@ -18,11 +18,12 @@ namespace ClientsChat
         public Nullable<int> IdManager { get; set; }
         public Nullable<int> IdClient { get; set; }
         public Nullable<int> IdDirection { get; set; }
-        public string Status { get; set; }
+        public Nullable<int> IdStatus { get; set; }
         public string Info { get; set; }
     
         public virtual Clients Clients { get; set; }
         public virtual Directions Directions { get; set; }
         public virtual Managers Managers { get; set; }
+        public virtual Statuses Statuses { get; set; }
     }
 }

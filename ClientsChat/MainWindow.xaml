@@ -86,6 +86,8 @@
                 <StackPanel Grid.Row="0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
+                            x:Name="stackProfile"
+                            MouseDown="stackProfile_MouseDown"
                     >
                     <Image Source="Icons/photo.png"
                         Height="60"

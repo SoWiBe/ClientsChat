@@ -12,10 +12,12 @@
         <AssociationConnector Association="ClientChatModel.FK_Clients_Users" />
         <AssociationConnector Association="ClientChatModel.FK_Managers_Users" />
         <EntityTypeShape EntityType="ClientChatModel.Directions" Width="1.5" PointX="3.125" PointY="1.375" />
-        <EntityTypeShape EntityType="ClientChatModel.Question" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ClientChatModel.Statuses" Width="1.5" PointX="7.875" PointY="1.25" />
+        <EntityTypeShape EntityType="ClientChatModel.Question" Width="1.5" PointX="10.125" PointY="2.625" />
         <AssociationConnector Association="ClientChatModel.FK_Question_Clients" />
         <AssociationConnector Association="ClientChatModel.FK_Question_Directions" />
         <AssociationConnector Association="ClientChatModel.FK_Question_Managers" />
+        <AssociationConnector Association="ClientChatModel.FK_Question_Statuses" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

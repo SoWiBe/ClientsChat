@@ -80,5 +80,10 @@ namespace ClientsChat
         {
             FrameManager.MainFrame.Navigate(new ChatPage(ClientManager.Name));
         }
+
+        private void stackProfile_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            FrameManager.MainFrame.Navigate(new ProfilePage());
+        }
     }
 }
