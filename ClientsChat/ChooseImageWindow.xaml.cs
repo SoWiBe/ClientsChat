@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientsChat.SpecialUse;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,19 @@ namespace ClientsChat
         public ChooseImageWindow()
         {
             InitializeComponent();
+        }
+
+        private void imgOne_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Managers manager = ClientChatEntities.GetContext().Managers.Where(x => x.Id == ClientManager.Id).First();
+            manager.Image = ((Image)sender).Source.ToString();
+            ClientManager.Icon = manager.Image;
+            MessageBox.Show(manager.FIO.ToString());
+            //ClientChatEntities.GetContext().Managers.Add(manager);
+            ClientChatEntities.GetContext().SaveChanges();
+
+            FrameManager.MainFrame.Navigate(new ProfilePage());
+            FrameManager.LeftPanel.Navigate(new LeftPanelPage());
         }
     }
 }

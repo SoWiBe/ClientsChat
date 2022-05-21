@@ -34,16 +34,17 @@
                 <TextBox
                         x:Name="txtName"
                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
-                        Foreground="#6E00FF"
+                        Foreground="#FF4500"
                         FontFamily="Roboto"
                         BorderThickness="0"
                         Background="Transparent"
-                        TextAlignment="Center"
+                        TextAlignment="Left"
                         FontWeight="SemiBold"
                         IsEnabled="False"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Stretch"
-                        FontSize="20" Height="31"
+                        FontSize="22"
+                        Margin="10,0,0,0"
                         />
             </StackPanel>
             <StackPanel Grid.Row="1"

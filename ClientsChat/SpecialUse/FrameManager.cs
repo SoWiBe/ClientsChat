@@ -10,7 +10,9 @@ namespace ClientsChat.SpecialUse
     class FrameManager
     {
         public static Frame MainFrame { get; set; }
+        public static Frame LeftPanel { get; set; }
         public static Frame RegistrFrame { get; set; }
         public static Border BorderMenu { get; set; }
+        public static Page ProfilePage { get; set; }
     }
 }

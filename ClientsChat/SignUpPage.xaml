@@ -13,7 +13,7 @@
             <RowDefinition Height="623*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.RowSpan="2">
             <StackPanel HorizontalAlignment="Center"
                         VerticalAlignment="Center" 
                         Width="700" Height="603">
@@ -55,10 +55,22 @@
                     </StackPanel>
                 </StackPanel>-->
 
+                
                 <Button
-                    Margin="0 40"
+                    Margin="0 20 0 0"
                     Style="{StaticResource EnterButton}"
                     Click="Button_Click"/>
+                <StackPanel>
+                    <Label Content="Авторизация"
+                       FontSize="18"
+                       HorizontalAlignment="Center"
+                       FontFamily="Roboto"
+                       Margin="0 10"
+                       Foreground="Gray"
+                       FontWeight="SemiBold"
+                       MouseDown="Label_MouseDown"
+                       />
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

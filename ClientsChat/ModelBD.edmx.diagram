@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="7a5de762428f460685230be2b1a9ebb4" Name="Diagram1">
-        <EntityTypeShape EntityType="ClientChatModel.Clients" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClientChatModel.Managers" Width="1.5" PointX="3.125" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClientChatModel.sysdiagrams" Width="1.5" PointX="5.625" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ClientChatModel.Users" Width="1.5" PointX="0.5" PointY="4.5" />
+        <EntityTypeShape EntityType="ClientChatModel.Clients" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="ClientChatModel.Directions" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="ClientChatModel.Managers" Width="1.5" PointX="3" PointY="4.5" />
+        <EntityTypeShape EntityType="ClientChatModel.Question" Width="1.5" PointX="5.25" PointY="2.875" />
+        <EntityTypeShape EntityType="ClientChatModel.Statuses" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="ClientChatModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ClientChatModel.Users" Width="1.5" PointX="0.75" PointY="3.375" />
         <AssociationConnector Association="ClientChatModel.FK_Clients_Users" />
-        <AssociationConnector Association="ClientChatModel.FK_Managers_Users" />
-        <EntityTypeShape EntityType="ClientChatModel.Directions" Width="1.5" PointX="3.125" PointY="1.375" />
-        <EntityTypeShape EntityType="ClientChatModel.Statuses" Width="1.5" PointX="7.875" PointY="1.25" />
-        <EntityTypeShape EntityType="ClientChatModel.Question" Width="1.5" PointX="10.125" PointY="2.625" />
         <AssociationConnector Association="ClientChatModel.FK_Question_Clients" />
         <AssociationConnector Association="ClientChatModel.FK_Question_Directions" />
+        <AssociationConnector Association="ClientChatModel.FK_Managers_Users" />
         <AssociationConnector Association="ClientChatModel.FK_Question_Managers" />
         <AssociationConnector Association="ClientChatModel.FK_Question_Statuses" />
       </Diagram>

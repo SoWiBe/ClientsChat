@@ -92,6 +92,9 @@
     <Compile Include="Directions.cs">
       <DependentUpon>ModelBD.tt</DependentUpon>
     </Compile>
+    <Compile Include="LeftPanelPage.xaml.cs">
+      <DependentUpon>LeftPanelPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -101,8 +104,13 @@
     <Compile Include="MVVM\Model\PersonModel.cs" />
     <Compile Include="MVVM\Model\ProfileImage.cs" />
     <Compile Include="MVVM\ViewModel\ChooseImagesModel.cs" />
+    <Compile Include="MVVM\ViewModel\MainWindowModel.cs" />
+    <Compile Include="MVVM\ViewModel\NotificationsModel.cs" />
     <Compile Include="MVVM\ViewModel\ProfilePageModel.cs" />
     <Compile Include="MVVM\ViewModel\QuestionPageModel.cs" />
+    <Compile Include="NotificationsPage.xaml.cs">
+      <DependentUpon>NotificationsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
@@ -163,6 +171,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LeftPanelPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,6 +191,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NotificationsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -240,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\MessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\NotificationCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -355,6 +375,12 @@
     <Resource Include="Icons\question.png" />
     <Resource Include="Icons\question-mark-4-64.png" />
     <Resource Include="Icons\2931178_change_edit_pencil_creative_design_icon.png" />
+    <Resource Include="Icons\Ellipse 39.png" />
+    <Resource Include="Icons\Ellipse 40.png" />
+    <Resource Include="Icons\Ellipse 41.png" />
+    <Resource Include="Icons\Ellipse 46.png" />
+    <Resource Include="Icons\Ellipse 47.png" />
+    <Resource Include="Icons\Ellipse 64.png" />
     <Content Include="ModelBD.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelBD.Context.cs</LastGenOutput>

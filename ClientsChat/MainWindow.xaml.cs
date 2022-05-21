@@ -27,12 +27,11 @@ namespace ClientsChat
         {
             InitializeComponent();
             FrameManager.MainFrame = MainFrame;
-            FrameManager.BorderMenu = BorderMenu;
-            FrameManager.BorderMenu.Visibility = Visibility.Hidden;
+            FrameManager.LeftPanel = LeftPanel;
             FrameManager.RegistrFrame = RegistrFrame;
             FrameManager.RegistrFrame.Navigate(new LoginWindow());
         }
-
+        
         //Realization click to menu items
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         protected void OnPropertyChanged(string property)
@@ -65,25 +64,6 @@ namespace ClientsChat
             Application.Current.Shutdown();
         }
 
-        private void stackExit_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            FrameManager.RegistrFrame.Navigate(new LoginWindow());
-            FrameManager.MainFrame.Navigate(null);
-        }
 
-        private void borderQuestion_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            FrameManager.MainFrame.Navigate(new QuestionPage());
-        }
-
-        private void borderChat_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            FrameManager.MainFrame.Navigate(new ChatPage(ClientManager.Name));
-        }
-
-        private void stackProfile_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            FrameManager.MainFrame.Navigate(new ProfilePage());
-        }
     }
 }

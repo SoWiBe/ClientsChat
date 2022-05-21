@@ -1,0 +1,168 @@
+﻿<Page x:Class="ClientsChat.LeftPanelPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ClientsChat" xmlns:viewmodel="clr-namespace:ClientsChat.MVVM.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="450"
+      Title="LeftPanelPage" Width="112.812">
+
+    <Page.DataContext>
+        <viewmodel:MainWindowModel/>
+    </Page.DataContext>
+    <Border
+            x:Name="BorderMenu"
+            Margin="20"
+            CornerRadius="15"
+            BorderBrush="#6E00FF"
+            BorderThickness="1"
+            Background="#6E00FF" Grid.Row="1">
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="80*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                            x:Name="stackProfile"
+                            MouseDown="stackProfile_MouseDown"
+                    >
+                <StackPanel.Style>
+                    <Style TargetType="{x:Type StackPanel}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#612DD1"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <Image Source="{Binding ManagerIcon}"
+                        Height="60"
+                       
+                        Width="60"/>
+
+            </StackPanel>
+            <Border
+                    Grid.Row="1"
+                    BorderThickness="0,0,4,0"
+                    x:Name="borderChat"
+                    MouseDown="borderChat_MouseDown">
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#612DD1"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" 
+                        Height="25"
+                        Width="25">
+                    <Image Source="Icons/chat.png"
+                            Height="25"
+                            Width="25"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="2"
+                    BorderThickness="0,0,4,0"
+                    x:Name="borderQuestion"
+                    MouseDown="borderQuestion_MouseDown">
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#612DD1"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" 
+                        Height="25"
+                        Width="25">
+                    <Image Source="Icons/question-mark-4-64.png"
+                            Height="25"
+                            Width="25"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="3"
+                    BorderThickness="0,0,4,0">
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#612DD1"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel Grid.Row="3"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" 
+                        Height="30"
+                            x:Name="stackNotifications"
+                            MouseDown="stackNotifications_MouseDown"
+                        Width="30">
+                    <Image Source="Icons/bell.png"
+                            Height="30"
+                            Width="30"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="4"
+                        >
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#612DD1"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <StackPanel Grid.Row="4" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Height="30" 
+                        Width="30">
+                    <Image Source="Icons/ci_settings.png"
+                            Height="30"
+                            Width="30"/>
+                </StackPanel>
+            </Border>
+
+            <Grid 
+                    x:Name="stackExit"
+                    Grid.Row="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,0,10"
+                    MouseDown="stackExit_MouseDown"
+                    Height="71" Width="84">
+                <Grid.Style>
+                    <Style TargetType="{x:Type Grid}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#612DD1"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Image 
+                        Source="Icons/exit.png"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        Width="30"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Page>

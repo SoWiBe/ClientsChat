@@ -14,7 +14,6 @@ namespace ClientsChat.MVVM.ViewModel
 {
     class MainViewModel : ObservableObject
     {
-        
         public ObservableCollection<UserModel> Users { get; set; }
         public ObservableCollection<MessageModel> Messages { get; set; }
         public ObservableCollection<Clients> Clients { get; set; }
@@ -59,6 +58,11 @@ namespace ClientsChat.MVVM.ViewModel
             for (int i = 0; i < listQuestions.Count(); i++)
             {
                 Clients.Add(listQuestions.ElementAt(i).Clients);
+            }
+
+            if(Clients.Count != 0)
+            {
+                SelectedContact = Clients.First();
             }
         }
 

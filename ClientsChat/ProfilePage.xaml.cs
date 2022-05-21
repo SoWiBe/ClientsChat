@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientsChat.SpecialUse;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace ClientsChat
         public ProfilePage()
         {
             InitializeComponent();
+            FrameManager.ProfilePage = this;
         }
 
         private void btnChange_MouseDown(object sender, MouseButtonEventArgs e)

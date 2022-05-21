@@ -45,7 +45,34 @@
                                            FontWeight="SemiBold"/>
                             </StackPanel>
 
-                            <Button Style="{StaticResource StartToSolveButton}" />
+                            <Button
+                                 Content="Открыть">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border
+                                                        CornerRadius="10"
+                                                        BorderThickness="0"
+                                                        Background="#6E00FF" 
+                                                        VerticalAlignment="Top"
+                                                        Height="25"
+                                                        Width="100">
+                                                    <Label
+                                                        FontWeight="SemiBold"
+                                                        Content="Войти"
+                                                        Foreground="White"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="18"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
                         </StackPanel>
                     </Border>
                 </ControlTemplate>

@@ -13,5 +13,6 @@ namespace ClientsChat.SpecialUse
 
         public static string Name { get; set; }
         public static int Id { get; set; }
+        public static string Icon { get; set; }
     }
 }

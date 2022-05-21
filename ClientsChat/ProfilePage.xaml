@@ -67,7 +67,7 @@
                                 VerticalAlignment="Center">
                         <Image
                             Width="120"
-                            Source="/Icons/group2.png" />
+                            Source="{Binding ManagerIcon}" />
                         <Label
                             Content="{Binding ManagerName}"
                             FontSize="18"
@@ -108,7 +108,7 @@
                                 VerticalAlignment="Center">
                         <Label 
                             Content="{Binding Experience}"
-                            FontSize="35"
+                            FontSize="35 "
                             Margin="10 0 0 0"
                             HorizontalAlignment="Center" VerticalAlignment="Center"
                             FontFamily="Roboto"

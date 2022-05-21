@@ -58,8 +58,10 @@ namespace ClientsChat
                 string FIO = ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == user.Id).First().FIO;
                 int Id = ClientChatEntities.GetContext().Managers.Where(x => x.IdUser == user.Id).First().Id;
                 ClientManager.Name = FIO;
-                ClientManager.Id = Id; 
-                FrameManager.BorderMenu.Visibility = Visibility.Visible;
+                ClientManager.Id = Id;
+                //if(ClientChatEntities.GetContext().Managers.Where(x => x.Id == ClientManager.Id).First().Image != null)
+                ClientManager.Icon = ClientChatEntities.GetContext().Managers.Where(x => x.Id == ClientManager.Id).First().Image;
+                FrameManager.LeftPanel.Navigate(new LeftPanelPage());
                 FrameManager.MainFrame.Navigate(new ChatPage(FIO));
                 FrameManager.RegistrFrame.Navigate(null);
             }

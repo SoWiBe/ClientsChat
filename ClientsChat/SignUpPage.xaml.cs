@@ -70,5 +70,10 @@ namespace ClientsChat
             MessageBox.Show(Login);
             return true;
         }
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            FrameManager.RegistrFrame.Navigate(new LoginWindow());
+        }
     }
 }

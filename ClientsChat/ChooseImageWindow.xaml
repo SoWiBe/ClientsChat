@@ -8,42 +8,56 @@
         mc:Ignorable="d"
         Title="ChooseImageWindow" 
         Width="300"
-        Height="400"
+        Height="300"
         WindowStartupLocation="CenterScreen">
-    
+
     <Window.DataContext>
         <viewmodel:ChooseImagesModel/>
     </Window.DataContext>
-    
+
     <Grid>
-        <DataGrid Name="gridImages"
-                  AutoGenerateColumns="True" 
-                  BorderThickness="0"
-                  ItemsSource="{Binding Images}">
-            <DataGridTemplateColumn Header="Image" IsReadOnly="True"
-                                    Width="50"
-                                    >
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <Image Source="E:/C#/ClientsChat/ClientsChat/Icons/group2.png"/>
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-            <DataGridTemplateColumn Header="Image" IsReadOnly="True"
-                                    Width="50">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <Image Source="{Binding IconTwo}"/>
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-            <DataGridTemplateColumn Header="Image" Width="SizeToCells" IsReadOnly="True">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <Image Source="{Binding IconThree}"/>
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-        </DataGrid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Выберите аватар"
+            FontSize="18"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontFamily="Roboto"
+            FontWeight="SemiBold"
+            Foreground="#6E00FF"
+            Grid.ColumnSpan="3"/>
+        <Image x:Name="imgOne" 
+               Grid.Row="2" Grid.Column="0" 
+               Source="/Icons/Ellipse 39.png" 
+               MouseDown="imgOne_MouseDown"/>
+        <Image x:Name="imgTwo"
+               Grid.Row="2" Grid.Column="1"  
+               Source="/Icons/Ellipse 40.png"
+               MouseDown="imgOne_MouseDown"/>
+        <Image x:Name="imgThree" 
+               Grid.Row="2" Grid.Column="2"  
+               Source="/Icons/Ellipse 41.png"
+               MouseDown="imgOne_MouseDown"/>
+        <Image x:Name="imgFour" 
+               Grid.Row="1" Grid.Column="0"  
+               Source="/Icons/Ellipse 46.png"
+               MouseDown="imgOne_MouseDown"/>
+        <Image x:Name="imgFive" 
+               Grid.Row="1" Grid.Column="1" 
+               Source="/Icons/Ellipse 47.png"
+               MouseDown="imgOne_MouseDown"/>
+        <Image x:Name="imgSiz"
+               Grid.Row="1" Grid.Column="2" 
+               Source="/Icons/Ellipse 64.png" 
+               MouseDown="imgOne_MouseDown"/>
+
     </Grid>
 </Window>
