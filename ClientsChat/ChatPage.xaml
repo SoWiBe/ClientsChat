@@ -34,7 +34,7 @@
                 <TextBox
                         x:Name="txtName"
                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
-                        Foreground="#FF4500"
+                        Foreground="Black"
                         FontFamily="Roboto"
                         BorderThickness="0"
                         Background="Transparent"
@@ -71,9 +71,9 @@
                                 Margin="5,5,0,0" Height="34" Width="170"
                                 Content="Ваши клиенты"
                                        />
-                        <ListView ItemsSource="{Binding Clients}"
+                        <ListView ItemsSource="{Binding Questions}"
                                 BorderThickness="0"
-                                SelectedItem="{Binding SelectedContact}"
+                                SelectedItem="{Binding SelectedQuestion}"
                                 Grid.Row="1"
                                 Height="350"
                                 Background="Transparent"
@@ -91,18 +91,35 @@
         </Grid>
         <Grid Grid.Column="1"
                 Background="#EFF6FC">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="23*"/>
+            </Grid.RowDefinitions>
+            <Label
+                Content="{Binding SelectedQuestion.Info}"
+                Foreground="#FF4500"
+                FontSize="18"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                
+                FontWeight="SemiBold" Height="48" Width="589" Margin="20,0,10,0"
+                />
             <Border 
-                    Grid.Row="0"
+                    Grid.Row="1"
                     CornerRadius="15"
                     BorderBrush="LightGray"
                     BorderThickness="3"
                     Background="White" Margin="20,10,10,10">
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="85*"/>
-                        <RowDefinition Height="457*"/>
-                        <RowDefinition Height="65*"/>
+
+                        <RowDefinition Height="70*"/>
+                        <RowDefinition Height="344*"/>
+                        <RowDefinition Height="78*"/>
                     </Grid.RowDefinitions>
+
                     <Border HorizontalAlignment="Stretch" 
                             VerticalAlignment="Center" Height="84"
                                  >
@@ -115,13 +132,13 @@
                                             HorizontalAlignment="Stretch"
                                             VerticalAlignment="Center"
                                             >
-                                <Image Source="{Binding SelectedContact.ImageNew}"
+                                <Image Source="{Binding SelectedQuestion.Clients.ImageNew}"
                                            Width="50" Height="50"
                                        />
                                 <StackPanel HorizontalAlignment="Center"
                                                 VerticalAlignment="Center">
                                     <Label
-                                        Content="{Binding SelectedContact.FIO}"
+                                        Content="{Binding SelectedQuestion.Clients.FIO}"
                                         Foreground="Black"
                                         FontSize="14"
                                         FontWeight="SemiBold"
@@ -134,9 +151,47 @@
                                         />
                                 </StackPanel>
                             </StackPanel>
+                            <Button
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                x:Name="btnOpen"
+                                Command="{Binding CloseQuestionCommand}">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border
+                                        CornerRadius="10"
+                                        BorderThickness="0"
+                                        Background="#6E00FF" 
+                                        VerticalAlignment="Top"
+                                        Height="40"
+                                        Width="100">
+                                                        <Label
+                                        FontWeight="SemiBold"
+                                        Content="Закрыть"
+                                        Foreground="White"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="18"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#FFD700"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
                             <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Right"
                                             Grid.Column="1">
+
                                 <Image Source="/Icons/phone.png" 
                                            Width="30" Height="30"
                                            Margin="0 0 15 0"/>
@@ -158,7 +213,7 @@
                             BorderThickness="0">
                     </ListView>
 
-                    <Grid Grid.Row="2"  Grid.RowSpan="2">
+                    <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition Width="60"/>
@@ -196,9 +251,11 @@
                                     Style="{StaticResource SendButton}"
                                     Command="{Binding SendMessageCommand}"/>
                     </Grid>
+
                 </Grid>
 
             </Border>
+
         </Grid>
     </Grid>
 </Page>

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace ClientsChat.MVVM.ViewModel
 {
@@ -17,22 +18,38 @@ namespace ClientsChat.MVVM.ViewModel
         public ObservableCollection<UserModel> Users { get; set; }
         public ObservableCollection<MessageModel> Messages { get; set; }
         public ObservableCollection<Clients> Clients { get; set; }
+        public ObservableCollection<Question> Questions { get; set; }
         public string Username { get; set; }
 
         /* Commands */
         public RelayCommand SendCommand { get; set; }
         public RelayCommand ConnectToServerCommand { get; set; }
         public RelayCommand SendMessageCommand { get; set; }
+        public ICommand OpenChatPage { get; set; }
+        public ICommand CloseQuestionCommand { get; set; }
 
         private Server _server;
 
         private Clients _selectedContact;
+
         public Clients SelectedContact
         {
             get { return _selectedContact; }
             set
             {
                 _selectedContact = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Question _selectedQuestion;
+
+        public Question SelectedQuestion
+        {
+            get { return _selectedQuestion; }
+            set
+            {
+                _selectedQuestion = value;
                 OnPropertyChanged();
             }
         }
@@ -49,21 +66,42 @@ namespace ClientsChat.MVVM.ViewModel
 
             ConnectToServerCommand = new RelayCommand(o => _server.ConnectToServer(Username), o => !string.IsNullOrEmpty(Username));
             SendMessageCommand = new RelayCommand(o => _server.SendMessageToServer(Message), o => !string.IsNullOrEmpty(Message));
+            CloseQuestionCommand = new RelayCommand(o => CloseQuestion(), o => SelectedQuestion != null);
+            
 
             Messages = new ObservableCollection<MessageModel>();
             Clients = new ObservableCollection<Clients>();
+            Questions = new ObservableCollection<Question>();
 
 
-            var listQuestions = ClientChatEntities.GetContext().Question.Where(x => x.IdManager == ClientManager.Id && x.IdStatus == 1).ToList();
+            SetAndUpdateQuestions();
+
+            if (Questions.Count != 0)
+            {
+                SelectedQuestion = Questions.First();
+
+            }
+        }
+
+        private void SetAndUpdateQuestions()
+        {
+            Questions.Clear();
+            var listQuestions = ClientChatEntities.GetContext().Question.Where(x => x.IdManager == ClientManager.Id && x.IdStatus == 2).ToList();
             for (int i = 0; i < listQuestions.Count(); i++)
             {
-                Clients.Add(listQuestions.ElementAt(i).Clients);
+                Questions.Add(listQuestions.ElementAt(i));
             }
-
-            if(Clients.Count != 0)
-            {
-                SelectedContact = Clients.First();
-            }
+        }
+        private void CloseQuestion()
+        {
+            Question question = SelectedQuestion;
+            question.IdStatus = 3;
+            Managers manager = ClientChatEntities.GetContext().Managers.Where(x => x.Id == ClientManager.Id).First();
+            manager.CountQuestions++;
+            ClientChatEntities.GetContext().SaveChanges();
+            MessageBox.Show("Вопрос по теме: " + question.Info + " был закрыт!", "Вопрос открыт!", MessageBoxButton.OK);
+            SetAndUpdateQuestions();
+            
         }
 
         private void RemoveUser()

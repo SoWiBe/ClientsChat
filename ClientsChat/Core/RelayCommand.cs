@@ -21,6 +21,8 @@ namespace ClientsChat.Core
 
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
+            if (execute == null) throw new ArgumentException("exception");
+
             this.execute = execute;
             this.canExecute = canExecute;
         }
@@ -32,7 +34,7 @@ namespace ClientsChat.Core
 
         public void Execute(object parameter)
         {
-            this.execute(parameter);
+            this.execute(parameter ?? "<N/A>");
         }
     }
 }

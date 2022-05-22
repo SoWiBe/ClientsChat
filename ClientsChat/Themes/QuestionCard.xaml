@@ -6,7 +6,9 @@
                       Value="True">
                 <Setter Property="Background" Value="LightBlue"/>
             </Trigger>
-            
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="Background" Value="#6E00FF"/>
+            </Trigger>
         </Style.Triggers>
         <Setter Property="Background" Value="White"/>
 
@@ -17,17 +19,32 @@
                             Height="100"
                             CornerRadius="4"
                             Margin="10"
+                            Width="600"
                             Padding="10">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-
-                            <Ellipse Width="30" Height="30">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="False">
+                                        <Setter Property="Background" Value="#6E00FF"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+                            <Ellipse Width="60" Height="60" Grid.Column="0"
+                                     HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="{Binding Clients.ImageNew}" />
                                 </Ellipse.Fill>
                             </Ellipse>
 
 
-                            <StackPanel VerticalAlignment="Center">
+                            <StackPanel VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Left">
                                 <Label Content="{Binding Directions.Name}" 
                                            Foreground="#6E00FF"
                                            FontFamily="Roboto"
@@ -44,36 +61,7 @@
                                            FontSize="10"
                                            FontWeight="SemiBold"/>
                             </StackPanel>
-
-                            <Button
-                                 Content="Открыть">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="Button">
-                                                    <Border
-                                                        CornerRadius="10"
-                                                        BorderThickness="0"
-                                                        Background="#6E00FF" 
-                                                        VerticalAlignment="Top"
-                                                        Height="25"
-                                                        Width="100">
-                                                    <Label
-                                                        FontWeight="SemiBold"
-                                                        Content="Войти"
-                                                        Foreground="White"
-                                                        HorizontalAlignment="Center"
-                                                        VerticalAlignment="Center"
-                                                        FontSize="18"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </Button.Style>
-                            </Button>
-                        </StackPanel>
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

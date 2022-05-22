@@ -19,6 +19,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="29*"/>
             <RowDefinition Height="271*"/>
+            <RowDefinition Height="29*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Поставленные вопросы для вас"
@@ -43,10 +44,48 @@
                 BorderThickness="0"
                 Grid.Row="1"
                 Background="Transparent"
+                SelectedItem="{Binding SelectedQuestion}"
                 ItemContainerStyle="{StaticResource QuestionCard}"
                 HorizontalAlignment="Center"
-                Width="500"
+                Width="650"
                  
                 Margin="20"/>
+        <Button
+            Grid.Row="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            x:Name="btnOpen"
+            Command="{Binding OpenChatPage}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border
+                                        CornerRadius="10"
+                                        BorderThickness="0"
+                                        Background="#FF4500" 
+                                        VerticalAlignment="Top"
+                                        Height="40"
+                                        Width="100">
+                                    <Label
+                                        FontWeight="SemiBold"
+                                        Content="Открыть"
+                                        Foreground="White"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="18"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFD700"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Page>

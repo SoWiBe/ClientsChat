@@ -11,7 +11,8 @@ namespace ClientsChat
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Drawing;
+
     public partial class Question
     {
         public int Id { get; set; }
@@ -20,6 +21,7 @@ namespace ClientsChat
         public Nullable<int> IdDirection { get; set; }
         public Nullable<int> IdStatus { get; set; }
         public string Info { get; set; }
+      
     
         public virtual Clients Clients { get; set; }
         public virtual Directions Directions { get; set; }

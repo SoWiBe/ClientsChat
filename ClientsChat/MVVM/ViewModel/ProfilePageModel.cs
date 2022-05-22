@@ -26,7 +26,7 @@ namespace ClientsChat.MVVM.ViewModel
                 ManagerIcon = ClientChatEntities.GetContext().Managers.Where(x => x.Id == ClientManager.Id).First().Image;
             }
 
-            Experience = ClientChatEntities.GetContext().Managers.Where(x => x.Id == ClientManager.Id).First().Experiance; ;
+            Experience = ClientChatEntities.GetContext().Managers.Where(x => x.Id == ClientManager.Id).First().Experiance;
             CountCompleteQuestions = ClientChatEntities.GetContext().Managers.Where(x => x.Id == ClientManager.Id).First().CountQuestions.ToString();
             Grade = ClientChatEntities.GetContext().Managers.Where(x => x.Id == ClientManager.Id).First().Grade.ToString();
         }

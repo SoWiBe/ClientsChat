@@ -10,7 +10,8 @@
         Width="1200" 
         WindowStyle="None"
         AllowsTransparency="True"
-        ResizeMode="CanResizeWithGrip">
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen">
 
 
    

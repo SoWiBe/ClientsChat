@@ -24,12 +24,12 @@
 
                                 <Ellipse Width="40" Height="40">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding ImageNew}" />
+                                        <ImageBrush ImageSource="{Binding Clients.ImageNew}" />
                                     </Ellipse.Fill>
                                 </Ellipse>
 
                                 <StackPanel VerticalAlignment="Center">
-                                    <Label Content="{Binding FIO}" FontFamily="Roboto" FontSize="18" Foreground="Black"/>
+                                    <Label Content="{Binding Clients.FIO}" FontFamily="Roboto" FontSize="18" Foreground="Black"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Row="1" Background="#B4ABAB"></StackPanel>
