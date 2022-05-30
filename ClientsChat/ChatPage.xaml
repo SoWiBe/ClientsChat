@@ -121,8 +121,9 @@
                     </Grid.RowDefinitions>
 
                     <Border HorizontalAlignment="Stretch" 
-                            VerticalAlignment="Center" Height="84"
-                                 >
+                            VerticalAlignment="Center" 
+                            Height="84">
+                       
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -163,19 +164,19 @@
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="Button">
                                                     <Border
-                                        CornerRadius="10"
-                                        BorderThickness="0"
-                                        Background="#6E00FF" 
-                                        VerticalAlignment="Top"
-                                        Height="40"
-                                        Width="100">
+                                                        CornerRadius="10"
+                                                        BorderThickness="0"
+                                                        Background="#6E00FF" 
+                                                        VerticalAlignment="Top"
+                                                        Height="40"
+                                                        Width="100">
                                                         <Label
-                                        FontWeight="SemiBold"
-                                        Content="Закрыть"
-                                        Foreground="White"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="18"/>
+                                                            FontWeight="SemiBold"
+                                                            Content="Закрыть"
+                                                            Foreground="White"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            FontSize="18"/> 
                                                     </Border>
                                                 </ControlTemplate>
                                             </Setter.Value>
