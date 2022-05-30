@@ -112,6 +112,17 @@
                     BorderBrush="LightGray"
                     BorderThickness="3"
                     Background="White" Margin="20,10,10,10">
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Style.Triggers >
+                            <DataTrigger Binding="{Binding IsHasContent}" Value="False">
+                                <DataTrigger.Setters>
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
 

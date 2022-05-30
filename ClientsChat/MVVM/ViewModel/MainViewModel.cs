@@ -65,6 +65,8 @@ namespace ClientsChat.MVVM.ViewModel
         }
         //Поле сообщения
         public string Message { get; set; }
+        //Булевое поле для дальнейшей проверки на наличие сообщений
+        public bool IsHasContent { get; set; }
         
         public MainViewModel()
         {
@@ -88,7 +90,12 @@ namespace ClientsChat.MVVM.ViewModel
 
             //Вывод вопросов с определенным статусом
             SetAndUpdateQuestions();
-
+            IsHasContent = true;
+            if (Questions.Count() == 0)
+            {
+                IsHasContent = false;
+            }
+            MessageBox.Show(IsHasContent.ToString());
             //Установка первого вопроса, как выбранного
             if (Questions.Count != 0)
             {
