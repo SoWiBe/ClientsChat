@@ -96,7 +96,7 @@
                 <RowDefinition Height="23*"/>
             </Grid.RowDefinitions>
             <Label
-                Content="{Binding SelectedQuestion.Info}"
+                Content="{Binding SelectedQuestion.Name}"
                 Foreground="#FF4500"
                 FontSize="18"
                 HorizontalAlignment="Center"
@@ -144,13 +144,12 @@
                                             HorizontalAlignment="Stretch"
                                             VerticalAlignment="Center"
                                             >
-                                <Image Source="{Binding SelectedQuestion.Clients.ImageNew}"
-                                           Width="50" Height="50"
-                                       />
+                                <Image Source="/Icons/Ellipse 40.png"  Width="50" Height="50"/>
+
                                 <StackPanel HorizontalAlignment="Center"
                                                 VerticalAlignment="Center">
                                     <Label
-                                        Content="{Binding SelectedQuestion.Clients.FIO}"
+                                        Content="В процессе разработки"
                                         Foreground="Black"
                                         FontSize="14"
                                         FontWeight="SemiBold"

@@ -1,7 +1,9 @@
 ﻿using ClientsChat.SpecialUse;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,6 +30,7 @@ namespace ClientsChat
         public string SecondName { get; set; }
         public string LastName { get; set; }
 
+        private string url = "http://dimasbarbadoss-001-site1.itempurl.com/api/managers/add";
         public SignUpPage()
         {
             InitializeComponent();
@@ -38,17 +41,24 @@ namespace ClientsChat
         {
             if(ValidateInfo())
             {
-                Users user = new Users();
-                user.Login = Login;
-                user.Password = Password;
+                using (var webClient = new WebClient())
+                {
+                    // Создаём коллекцию параметров
+                    var pars = new NameValueCollection();
 
-                Managers manager = new Managers();
-                manager.FIO = SecondName + " " + FirstName + " " + LastName;
-                manager.IdUser = user.Id;
+                    // Добавляем необходимые параметры в виде пар ключ, значение
+                    pars["fio"] = SecondName + " " + FirstName + " " + LastName;
+                    pars["image"] = "";
+                    pars["grade"] = "";
+                    pars["login"] = Login;
+                    pars["password"] = Password;
+                    pars["experiance"] = "";
 
-                ClientChatEntities.GetContext().Users.Add(user);
-                ClientChatEntities.GetContext().Managers.Add(manager);
-                ClientChatEntities.GetContext().SaveChanges();
+
+                    // Посылаем параметры на сервер
+                    // Может быть ответ в виде массива байт
+                    var response = webClient.UploadValues(url, "POST", pars);
+                }
 
                 FrameManager.RegistrFrame.Navigate(new LoginWindow());
             }
@@ -56,13 +66,13 @@ namespace ClientsChat
 
         private bool ValidateInfo()
         {
-            if(string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(SecondName)
-                || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(PasswordRepeat))
+            if(string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(passwordBox.Password) || string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(SecondName)
+                || string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(passwordBoxRepeat.Password))
             {
                 MessageBox.Show("Не все поля заполнены!");
                 return false;
             }
-            else if(PasswordRepeat != Password)
+            else if(passwordBox.Password != passwordBoxRepeat.Password)
             {
                 MessageBox.Show("Пароли не совпадают!");
                 return false;
@@ -74,6 +84,22 @@ namespace ClientsChat
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
             FrameManager.RegistrFrame.Navigate(new LoginWindow());
+        }
+
+        private void passwordBoxRepeat_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (passwordBoxRepeat.Password.Length == 0)
+                txtPassword.Visibility = Visibility.Visible;
+            else
+                txtPassword.Visibility = Visibility.Hidden;
+        }
+
+        private void passwordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (passwordBox.Password.Length == 0)
+                txtPasswordOne.Visibility = Visibility.Visible;
+            else
+                txtPasswordOne.Visibility = Visibility.Hidden;
         }
     }
 }

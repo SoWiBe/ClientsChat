@@ -27,12 +27,40 @@
                     Width="300"
                     Height="50"
                     Style="{StaticResource CustomTextBox}"/>
-                <TextBox
-                    x:Name="txtPassword"
-                    Width="300"
-                    Height="50"
-                    Style="{StaticResource CustomTextBoxPassword}"/>
-                
+                <Border CornerRadius="25"
+                        BorderThickness="1"
+                        BorderBrush="#6E00FF"
+                        Width="300"
+                        Height="50"
+                        Margin="10"
+                        Background="Transparent">
+                    <Grid>
+                        <PasswordBox VerticalAlignment="Stretch"
+                                    VerticalContentAlignment="Center"
+                                    HorizontalAlignment="Stretch"
+                                    Name="passwordBox" 
+                                     PasswordChanged="passwordBox_PasswordChanged"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    PasswordChar="*"
+                                    Width="250"
+                                    Height="50"
+                                    FontSize="20"
+                                    Foreground="Gray"
+                                    Margin="30 0 0 0"/>
+                        <TextBlock IsHitTestVisible="False"
+                                Text="Пароль"
+                                FontSize="20"
+                                FontWeight="SemiBold"
+                                Name="txtPasswordOne"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Margin="40,11,0,10"
+                                Foreground="Gray">
+                        </TextBlock>
+                    </Grid>
+                </Border>
+
                 <Button
                     x:Name="btnConnect"
                     Style="{StaticResource EnterButton}"

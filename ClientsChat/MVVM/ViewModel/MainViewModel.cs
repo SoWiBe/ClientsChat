@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Net;
+using System.Text.Json;
+using System.Collections.Specialized;
 
 namespace ClientsChat.MVVM.ViewModel
 {
@@ -19,7 +22,7 @@ namespace ClientsChat.MVVM.ViewModel
         //Объявления всех коллекций
         public ObservableCollection<UserModel> Users { get; set; }
         public ObservableCollection<MessageModel> Messages { get; set; }
-        public ObservableCollection<Clients> Clients { get; set; }
+        public ObservableCollection<Client> Clients { get; set; }
         public ObservableCollection<Question> Questions { get; set; }
         //Имя для входа в чат
         public string Username { get; set; }
@@ -40,9 +43,9 @@ namespace ClientsChat.MVVM.ViewModel
         //Сервер
         private Server _server;
         //Выбранный контакт
-        private Clients _selectedContact;
+        private Client _selectedContact;
         //Свойство, для получения или установления выбранного контакта
-        public Clients SelectedContact
+        public Client SelectedContact
         {
             get { return _selectedContact; }
             set
@@ -67,9 +70,14 @@ namespace ClientsChat.MVVM.ViewModel
         public string Message { get; set; }
         //Булевое поле для дальнейшей проверки на наличие сообщений
         public bool IsHasContent { get; set; }
+
+        private string urlQuestions = "http://dimasbarbadoss-001-site1.itempurl.com/api/directions";
+        private string urlClients = "http://dimasbarbadoss-001-site1.itempurl.com/api/clients";
         
         public MainViewModel()
         {
+           
+
             Users = new ObservableCollection<UserModel>();
             _server = new Server();
 
@@ -79,13 +87,13 @@ namespace ClientsChat.MVVM.ViewModel
             _server.userDisconnectEvent += RemoveUser;
 
             //Установка комманд
-            ConnectToServerCommand = new RelayCommand(o => _server.ConnectToServer(Username), o => !string.IsNullOrEmpty(Username));
-            SendMessageCommand = new RelayCommand(o => _server.SendMessageToServer(Message), o => !string.IsNullOrEmpty(Message));
+            ConnectToServerCommand = new RelayCommand(o => PostMessage(Message), o => !string.IsNullOrEmpty(Username));
+            SendMessageCommand = new RelayCommand(o => PostMessage(Message), o => !string.IsNullOrEmpty(Message));
             CloseQuestionCommand = new RelayCommand(o => CloseQuestion(), o => SelectedQuestion != null);
             
             //Выделение памяти под коллекции
             Messages = new ObservableCollection<MessageModel>();
-            Clients = new ObservableCollection<Clients>();
+            Clients = new ObservableCollection<Client>();
             Questions = new ObservableCollection<Question>();
 
             //Вывод вопросов с определенным статусом
@@ -101,28 +109,63 @@ namespace ClientsChat.MVVM.ViewModel
             {
                 SelectedQuestion = Questions.First();
             }
+
+
         }
 
+        private JsonElement ParseResponse(string response)
+        {
+            JsonDocument doc = JsonDocument.Parse(response);
+            JsonElement root = doc.RootElement;
+            return root;
+        }
         private void SetAndUpdateQuestions()
         {
+            string response = "";
             Questions.Clear();
-            var listQuestions = ClientChatEntities.GetContext().Question.Where(x => x.IdManager == ClientManager.Id && x.IdStatus == 2).ToList();
-            for (int i = 0; i < listQuestions.Count(); i++)
+
+            using (var webClient = new WebClient())
             {
-                Questions.Add(listQuestions.ElementAt(i));
+                webClient.Encoding = System.Text.Encoding.UTF8;
+                webClient.QueryString.Get("id");
+                response = webClient.DownloadString(urlQuestions);
+            }
+
+            JsonElement questionsJson = ParseResponse(response);
+            for (int i = 0; i < questionsJson.GetArrayLength(); i++)
+            {
+                Questions.Add(new Question
+                { 
+                    Id = questionsJson[i].GetProperty("id").ToString(),
+                    Name = questionsJson[i].GetProperty("name").ToString(),
+                });
             }
         }
 
+        private void PostMessage(string message)
+        {
+
+        }
         //Закрытие вопроса
         private void CloseQuestion()
         {
-            Question question = SelectedQuestion;
-            question.IdStatus = 3;
-            Managers manager = ClientChatEntities.GetContext().Managers.Where(x => x.Id == ClientManager.Id).First();
-            manager.CountQuestions++;
-            ClientChatEntities.GetContext().SaveChanges();
-            MessageBox.Show("Вопрос по теме: " + question.Info + " был закрыт!", "Вопрос открыт!", MessageBoxButton.OK);
-            SetAndUpdateQuestions();
+
+            //using (var webClient = new WebClient())
+            //{
+            //    // Создаём коллекцию параметров
+            //    var pars = new NameValueCollection();
+
+            //    // Добавляем необходимые параметры в виде пар ключ, значение
+            //    pars.Add("image", ((Image)sender).Source.ToString());
+            //    var response = webClient.UploadValues(url, pars);
+            //}
+            //Question question = SelectedQuestion;
+            //question.IdStatus = 3;
+            //Managers manager = ClientChatEntities.GetContext().Managers.Where(x => x.Id == ClientManager.Id).First();
+            //manager.CountQuestions++;
+            //ClientChatEntities.GetContext().SaveChanges();
+            //MessageBox.Show("Вопрос по теме: " + question.Info + " был закрыт!", "Вопрос открыт!", MessageBoxButton.OK);
+            //SetAndUpdateQuestions();
         }
         //Отсоединение пользователя с чата
         private void RemoveUser()

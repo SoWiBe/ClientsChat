@@ -1,8 +1,11 @@
 ﻿using ClientsChat.SpecialUse;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,19 +23,28 @@ namespace ClientsChat
     /// </summary>
     public partial class ChooseImageWindow : Window
     {
+        private string url = "http://dimasbarbadoss-001-site1.itempurl.com/api/managers";
+        private string response = "";
         public ChooseImageWindow()
         {
             InitializeComponent();
+
         }
 
         private void imgOne_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Managers manager = ClientChatEntities.GetContext().Managers.Where(x => x.Id == ClientManager.Id).First();
-            manager.Image = ((Image)sender).Source.ToString();
-            ClientManager.Icon = manager.Image;
-            MessageBox.Show(manager.FIO.ToString());
-            //ClientChatEntities.GetContext().Managers.Add(manager);
-            ClientChatEntities.GetContext().SaveChanges();
+            url += "/" + ClientManager.Id;
+
+            using (var webClient = new WebClient())
+            {
+                // Создаём коллекцию параметров
+                var pars = new NameValueCollection();
+
+                // Добавляем необходимые параметры в виде пар ключ, значение
+                pars.Add("image", ((Image)sender).Source.ToString());
+                var response = webClient.UploadValues(url, pars);
+            }
+            ClientManager.Icon = ((Image)sender).Source.ToString();
 
             FrameManager.MainFrame.Navigate(new ProfilePage());
             FrameManager.LeftPanel.Navigate(new LeftPanelPage());

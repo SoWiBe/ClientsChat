@@ -1,11 +1,14 @@
 ﻿using ClientsChat.Core;
+using ClientsChat.MVVM.Model;
 using ClientsChat.SpecialUse;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -36,33 +39,48 @@ namespace ClientsChat.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+        private string url = "http://dimasbarbadoss-001-site1.itempurl.com/api/directions";
+        private string response = "";
         public QuestionPageModel()
         {
-            //Елси нет активных вопросов, то отобразить соответствующую информацию
-            if (ClientChatEntities.GetContext().Question.Where(x => x.IdManager == ClientManager.Id && x.IdStatus == 1).ToList().Count == 0)
+            using (var webClient = new WebClient())
             {
-                SomeText = "У вас пока нет новых вопросов...";
-                return;
+                webClient.Encoding = System.Text.Encoding.UTF8;
+                webClient.QueryString.Get("id");
+                response = webClient.DownloadString(url);
             }
-            //Выделение памяти под вопросы
+
+            JsonElement questionsJson = ParseResponse(response);
             Questions = new ObservableCollection<Question>();
-            //Запись в коллекцию
-            foreach (var question in ClientChatEntities.GetContext().Question.Where(x => x.IdManager == ClientManager.Id && x.IdStatus == 1).ToList())
+            //Заполнение коллекции данными
+            for (int i = 0; i < questionsJson.GetArrayLength(); i++)
             {
-                Questions.Add(question);
+                Questions.Add(new Question
+                {
+                    Id = questionsJson[i].GetProperty("id").ToString(),
+                    Name = questionsJson[i].GetProperty("name").ToString(),
+                });
             }
             //Установка метода для команды
-            OpenChatPage = new RelayCommand(o => StartQuestion(SelectedQuestion.IdClient), o => SelectedQuestion != null);
+            OpenChatPage = new RelayCommand(o => StartQuestion(SelectedQuestion.Name), o => SelectedQuestion != null);
 
         }
         //Метод для открытия вопроса и перехода в чат, для его решения
         private void StartQuestion(object sender)
         {
-            Question question = SelectedQuestion;
-            question.IdStatus = 2;
-            ClientChatEntities.GetContext().SaveChanges();
-            MessageBox.Show("Вопрос по теме: " + question.Info + " был открыт!", "Вопрос открыт!", MessageBoxButton.OK);
+            //Question question = SelectedQuestion;
+            //question.IdStatus = 2;
+            //ClientChatEntities.GetContext().SaveChanges();
+            //MessageBox.Show("Вопрос по теме: " + question.Info + " был открыт!", "Вопрос открыт!", MessageBoxButton.OK);
             FrameManager.MainFrame.Navigate(new ChatPage(ClientManager.Name));
         }
+
+        private JsonElement ParseResponse(string response)
+        {
+            JsonDocument doc = JsonDocument.Parse(response);
+            JsonElement root = doc.RootElement;
+            return root;
+        }
+
     }
 }

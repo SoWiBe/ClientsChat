@@ -12,12 +12,14 @@
     <Page.DataContext>
         <viewmodel:NotificationsModel/>
     </Page.DataContext>
+    
     <Grid Background="#EFF6FC">
         <Grid.RowDefinitions>
             <RowDefinition Height="29*"/>
             <RowDefinition Height="271*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
             <Label Content="Уведомления"
                     FontSize="30"
                     HorizontalAlignment="Center"
