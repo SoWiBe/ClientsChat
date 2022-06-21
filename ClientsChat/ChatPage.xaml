@@ -54,12 +54,12 @@
                 <Border 
                         CornerRadius="20"
                         BorderThickness="0"
-                        Background="Transparent" Height="444">
+                        Background="Transparent" Height="512">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="37*"/>
-                            <RowDefinition Height="389"/>
-                            <RowDefinition Height="12*"/>
+                            <RowDefinition Height="13*"/>
+                            <RowDefinition Height="443"/>
+                            <RowDefinition Height="10*"/>
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" 
                                 FontFamily="Roboto"
@@ -75,10 +75,9 @@
                                 BorderThickness="0"
                                 SelectedItem="{Binding SelectedQuestion}"
                                 Grid.Row="1"
-                                Height="350"
                                 Background="Transparent"
                                 ItemContainerStyle="{StaticResource ContactCard}" 
-                                Margin="10">
+                                Margin="10,10,10,7">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <i:InvokeCommandAction Command="{Binding ConnectToServerCommand}"/>
@@ -134,7 +133,7 @@
                     <Border HorizontalAlignment="Stretch" 
                             VerticalAlignment="Center" 
                             Height="84">
-                       
+
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -186,7 +185,7 @@
                                                             Foreground="White"
                                                             HorizontalAlignment="Center"
                                                             VerticalAlignment="Center"
-                                                            FontSize="18"/> 
+                                                            FontSize="18"/>
                                                     </Border>
                                                 </ControlTemplate>
                                             </Setter.Value>

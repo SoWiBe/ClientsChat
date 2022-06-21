@@ -68,9 +68,13 @@ namespace ClientsChat
                 MessageBox.Show("Введите пароль!");
                 return;
             }
+            else if (passwordBox.Password.Length < 6)
+            {
+                MessageBox.Show("Пароль должен иметь больше символов!");
+                return;
+            }
             else
             {
-
                 JsonElement clientsJson = ParseResponse(response);
                 JsonElement client;
                 for (int i = 0; i < clientsJson.GetArrayLength(); i++)
@@ -87,7 +91,7 @@ namespace ClientsChat
                         return;
                     }
                 }
-                MessageBox.Show("Такой пользователя нет!", "Не найден", MessageBoxButton.OK);
+                MessageBox.Show("Такого пользователя нет!", "Не найден", MessageBoxButton.OK);
             }
         }
 

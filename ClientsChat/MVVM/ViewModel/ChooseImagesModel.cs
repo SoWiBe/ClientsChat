@@ -23,7 +23,6 @@ namespace ClientsChat.MVVM.ViewModel
                     IconThree = "E:/C#/ClientsChat/ClientsChat/Icons/group2.png"
                 });
             }
-            
         }
     }
 }

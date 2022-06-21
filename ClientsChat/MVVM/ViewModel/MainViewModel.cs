@@ -76,8 +76,6 @@ namespace ClientsChat.MVVM.ViewModel
         
         public MainViewModel()
         {
-           
-
             Users = new ObservableCollection<UserModel>();
             _server = new Server();
 
@@ -88,7 +86,7 @@ namespace ClientsChat.MVVM.ViewModel
 
             //Установка комманд
             ConnectToServerCommand = new RelayCommand(o => PostMessage(Message), o => !string.IsNullOrEmpty(Username));
-            SendMessageCommand = new RelayCommand(o => PostMessage(Message), o => !string.IsNullOrEmpty(Message));
+            SendMessageCommand = new RelayCommand(o => MessageReceived(), o => !string.IsNullOrEmpty(Message));
             CloseQuestionCommand = new RelayCommand(o => CloseQuestion(), o => SelectedQuestion != null);
             
             //Выделение памяти под коллекции
@@ -103,7 +101,6 @@ namespace ClientsChat.MVVM.ViewModel
             {
                 IsHasContent = false;
             }
-            MessageBox.Show(IsHasContent.ToString());
             //Установка первого вопроса, как выбранного
             if (Questions.Count != 0)
             {
@@ -142,6 +139,29 @@ namespace ClientsChat.MVVM.ViewModel
             }
         }
 
+        //private void SetAndUpdateClients()
+        //{
+        //    string response = "";
+        //    Clients.Clear();
+
+        //    using (var webClient = new WebClient())
+        //    {
+        //        webClient.Encoding = System.Text.Encoding.UTF8;
+        //        webClient.QueryString.Get("id");
+        //        response = webClient.DownloadString(urlQuestions);
+        //    }
+
+        //    JsonElement questionsJson = ParseResponse(response);
+        //    for (int i = 0; i < questionsJson.GetArrayLength(); i++)
+        //    {
+        //        Clients.Add(new Question
+        //        {
+        //            Id = questionsJson[i].GetProperty("id").ToString(),
+        //            Name = questionsJson[i].GetProperty("name").ToString(),
+        //        });
+        //    }
+        //}
+
         private void PostMessage(string message)
         {
 
@@ -176,13 +196,13 @@ namespace ClientsChat.MVVM.ViewModel
         }
         private void MessageReceived()
         {
-            var msg = _server.PacketReader.ReadMessage();
-            Application.Current.Dispatcher.Invoke(() => Messages.Add(new MessageModel
+            Messages.Add(new MessageModel
             {
-                Message = msg,
+                Message = Message,
                 Time = DateTime.Now.ToString("dddd, dd MMMM yyyy h:mm tt"),
                 IsNativeOrigin = true
-            }));
+            });
+            Message = "";
         }
         //Присоединение пользователсся к чату
         private void UserConnected()

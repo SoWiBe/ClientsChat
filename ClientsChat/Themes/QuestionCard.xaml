@@ -39,26 +39,16 @@
                             <Ellipse Width="60" Height="60" Grid.Column="0"
                                      HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding Clients.ImageNew}" />
+                                    <ImageBrush ImageSource="/Icons/Ellipse 41.png" />
                                 </Ellipse.Fill>
                             </Ellipse>
 
 
                             <StackPanel VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Left">
-                                <Label Content="{Binding Directions.Name}" 
+                                <Label Content="{Binding Name}" 
                                            Foreground="#6E00FF"
                                            FontFamily="Roboto"
                                            FontSize="15"
-                                           FontWeight="SemiBold"/>
-                                <Label Content="{Binding Info}" 
-                                           Foreground="Black" 
-                                           FontFamily="Roboto"
-                                           FontSize="15"
-                                           FontWeight="Bold"/>
-                                <Label Content="{Binding Clients.FIO}" 
-                                           Foreground="Gray" 
-                                           FontFamily="Roboto" 
-                                           FontSize="10"
                                            FontWeight="SemiBold"/>
                             </StackPanel>
                         </Grid>

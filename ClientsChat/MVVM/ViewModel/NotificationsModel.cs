@@ -37,8 +37,8 @@ namespace ClientsChat.MVVM.ViewModel
             {
                 Questions.Add(new Question
                 {
-                    Id = questionsJson.GetProperty("id").ToString(),
-                    Name = questionsJson.GetProperty("name").ToString(),
+                    Id = questionsJson[i].GetProperty("id").ToString(),
+                    Name = questionsJson[i].GetProperty("name").ToString(),
                 });
             }
         }

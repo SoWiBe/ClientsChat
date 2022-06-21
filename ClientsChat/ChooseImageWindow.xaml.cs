@@ -15,6 +15,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Net.Http;
+using System.IO;
+using System.Net.Http.Headers;
+
 
 namespace ClientsChat
 {
@@ -24,26 +28,15 @@ namespace ClientsChat
     public partial class ChooseImageWindow : Window
     {
         private string url = "http://dimasbarbadoss-001-site1.itempurl.com/api/managers";
-        private string response = "";
+        
         public ChooseImageWindow()
         {
             InitializeComponent();
-
         }
 
         private void imgOne_MouseDown(object sender, MouseButtonEventArgs e)
         {
             url += "/" + ClientManager.Id;
-
-            using (var webClient = new WebClient())
-            {
-                // Создаём коллекцию параметров
-                var pars = new NameValueCollection();
-
-                // Добавляем необходимые параметры в виде пар ключ, значение
-                pars.Add("image", ((Image)sender).Source.ToString());
-                var response = webClient.UploadValues(url, pars);
-            }
             ClientManager.Icon = ((Image)sender).Source.ToString();
 
             FrameManager.MainFrame.Navigate(new ProfilePage());

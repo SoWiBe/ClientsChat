@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ClientsChat.MVVM.ViewModel
 {
@@ -28,7 +29,6 @@ namespace ClientsChat.MVVM.ViewModel
         private string response = "";
         public ProfilePageModel()
         {
-
             using (var webClient = new WebClient())
             {
                 webClient.Encoding = System.Text.Encoding.UTF8;
@@ -36,14 +36,20 @@ namespace ClientsChat.MVVM.ViewModel
                 response = webClient.DownloadString(url);
             }
 
+
             //Получение менеджера для работы с изменением данных
             JsonElement manager = ParseResponse(response);
             //Запись ФИО менеджера
             ManagerName = manager.GetProperty("fio").ToString();
             //Если есть аватар, то устанавливаем его
-            if(manager.GetProperty("image").ToString() != null)
+            if (manager.GetProperty("image").ToString() != null)
             {
-                ManagerIcon = manager.GetProperty("experiance").ToString();
+                MessageBox.Show(manager.GetProperty("image").ToString());
+                ManagerIcon = manager.GetProperty("image").ToString();
+            }
+            else
+            {
+                ManagerIcon = "E:/C#/ClientsChat/ClientsChat/Icons/Ellipse 64.png";
             }
             //Установка остальных значений
             Experience = manager.GetProperty("experiance").ToString();

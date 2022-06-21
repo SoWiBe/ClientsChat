@@ -12,10 +12,27 @@
             <RowDefinition Height="27*"/>
             <RowDefinition Height="623*"/>
         </Grid.RowDefinitions>
-       
+
         <Grid Grid.Row="1">
-            <StackPanel HorizontalAlignment="Center"
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="191*"/>
+                <RowDefinition Height="432*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Margin="20"
                         VerticalAlignment="Center">
+                <Label Content="Manager Chat"
+                       FontSize="60"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       FontFamily="Roboto"
+                       FontWeight="Black"
+                       Foreground="#6E00FF"
+                       />
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Grid.Row="1" Height="284" Width="320">
                 <Label Content="Авторизация"
                        FontSize="30"
                        HorizontalAlignment="Center"
