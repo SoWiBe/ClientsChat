@@ -59,7 +59,7 @@ namespace ClientsChat.MVVM.ViewModel
             for (int i = 0; i < questionsJson.GetArrayLength(); i++)
             {
                 if (questionsJson[i].GetProperty("login").ToString().Equals("55maximus55"))
-                    return;
+                    break;
                 Managers.Add(new Manager
                 {
                     Id = questionsJson[i].GetProperty("id").ToString(),
