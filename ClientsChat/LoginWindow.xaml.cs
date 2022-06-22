@@ -85,6 +85,16 @@ namespace ClientsChat
                         ClientManager.Name = client.GetProperty("fio").ToString();
                         ClientManager.Id = Convert.ToInt32(client.GetProperty("id").ToString());
                         ClientManager.Icon = client.GetProperty("image").ToString();
+
+                        if (client.GetProperty("login").ToString().Equals("55maximus55"))
+                        {
+                            MessageBox.Show("Вход под администратором!");
+                            //FrameManager.LeftPanel.Navigate(new LeftPanelPage());
+                            FrameManager.MainFrame.Navigate(new AdminPage());
+                            FrameManager.RegistrFrame.Navigate(null);
+                            return;
+                        }
+
                         FrameManager.LeftPanel.Navigate(new LeftPanelPage());
                         FrameManager.MainFrame.Navigate(new ChatPage(ClientManager.Name));
                         FrameManager.RegistrFrame.Navigate(null);

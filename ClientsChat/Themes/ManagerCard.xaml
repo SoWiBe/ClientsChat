@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="ListViewItem" x:Key="ManagerCard">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                      Value="True">
+                <Setter Property="Background" Value="LightBlue"/>
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="Background" Value="White"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border Background="Transparent"
+                            Height="51"
+                            CornerRadius="4">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="1"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                                <Ellipse Width="40" Height="40">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="/Icons/Ellipse 40.png" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
+
+                                <StackPanel VerticalAlignment="Center">
+                                    <Label Content="{Binding fio}" FontFamily="Roboto" FontSize="12" Foreground="Black"/>
+                                    <Label Content="{Binding grade}" FontFamily="Roboto" FontSize="12" Foreground="Black"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Background="#B4ABAB"></StackPanel>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

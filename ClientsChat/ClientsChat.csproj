@@ -194,6 +194,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChatPage.xaml.cs">
       <DependentUpon>ChatPage.xaml</DependentUpon>
     </Compile>
@@ -216,6 +219,7 @@
     <Compile Include="MVVM\Model\PersonModel.cs" />
     <Compile Include="MVVM\Model\ProfileImage.cs" />
     <Compile Include="MVVM\Model\Question.cs" />
+    <Compile Include="MVVM\ViewModel\AdminViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ChooseImagesModel.cs" />
     <Compile Include="MVVM\ViewModel\MainWindowModel.cs" />
     <Compile Include="MVVM\ViewModel\NotificationsModel.cs" />
@@ -239,6 +243,10 @@
     <Compile Include="MVVM\Model\MessageModel.cs" />
     <Compile Include="MVVM\Model\UserModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
+    <Page Include="AdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ChatPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -332,6 +340,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\EnterButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ManagerCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

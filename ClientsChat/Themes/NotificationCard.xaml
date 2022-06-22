@@ -18,26 +18,16 @@
 
                             <Ellipse Width="30" Height="30">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding Clients.ImageNew}" />
+                                    <ImageBrush ImageSource="/Icons/Ellipse 64.png" />
                                 </Ellipse.Fill>
                             </Ellipse>
 
 
                             <StackPanel VerticalAlignment="Center">
-                                <Label Content="{Binding Directions.Name}" 
+                                <Label Content="{Binding Name}" 
                                            Foreground="#FFD700"
                                            FontFamily="Roboto"
                                            FontSize="15"
-                                           FontWeight="SemiBold"/>
-                                <Label Content="{Binding Info}" 
-                                           Foreground="White" 
-                                           FontFamily="Roboto"
-                                           FontSize="15"
-                                           FontWeight="Bold"/>
-                                <Label Content="{Binding Clients.FIO}" 
-                                           Foreground="#FFD700" 
-                                           FontFamily="Roboto" 
-                                           FontSize="10"
                                            FontWeight="SemiBold"/>
                             </StackPanel>
                         </StackPanel>
